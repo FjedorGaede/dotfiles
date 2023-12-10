@@ -123,6 +123,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Custom Stuff
+
+# Remap ls and cd to command line tools
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
 alias python='/usr/bin/python3.11'
 
 export NODE_OPTIONS=--max-old-space-size=4096
