@@ -133,3 +133,6 @@ xmodmap ~/.Xmodmap
 
 # Enable starship.rc
 eval "$(starship init bash)"
+
+# Enable zoxide
+eval "$(zoxide init bash)"
