@@ -1,0 +1,46 @@
+# Vim Setup
+let mapleader=" "
+
+# Options
+set clipboard+=unnamed # Sync clipboard between OS and Webstorm
+
+set relativenumber
+set number
+
+set ignorecase
+set smartcase
+set incsearch
+
+set hls # Highlight search result
+
+## IdeaVim specific Setup
+set idearefactormode=keep
+set ideajoin
+
+vnoremap p "0p
+## Plugins
+Plug 'tpope/vim-commentary'
+set matchit
+set easymotion
+
+set surround
+
+## Mapping
+
+# Multiple vim-multiple-cursors
+set multicursor
+map mc <A-n>
+map mx <A-x>
+map mp <A-p>
+
+# Easymotion
+map <leader>s <Plug>(easymotion-s)
+
+# Nerd Tree
+set NERDTree
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapJumpParent = 'h'
+
+# Action remapping
+map <leader>] <Action>(GotoNextError)
+map <leader>[ <Action>(GotoPreviousError)

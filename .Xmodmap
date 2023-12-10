@@ -1,0 +1,4 @@
+keycode 33 = p P braceleft braceleft braceleft 
+keycode 34 = udiaeresis Udiaeresis braceright braceright braceright 
+keycode 47 = odiaeresis Odiaeresis bracketleft bracketleft bracketleft
+keycode 48 = adiaeresis adiaeresis bracketright bracketright bracketright
