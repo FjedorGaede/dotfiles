@@ -131,6 +131,8 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
+alias jj='j -'
+
 alias python='/usr/bin/python3.11'
 
 export NODE_OPTIONS=--max-old-space-size=4096
@@ -139,8 +141,16 @@ export NODE_OPTIONS=--max-old-space-size=4096
 xmodmap ~/.Xmodmap
 . "$HOME/.cargo/env"
 
+# xinput commands
+# Set deceleration of the stylus (id: 18) to 0.9
+xinput set-prop 18 300 0.9
+
 # Enable starship.rc
 eval "$(starship init bash)"
 
 # Enable zoxide
-eval "$(zoxide init bash)"
+eval "$(zoxide init --cmd j bash)"
+
+# FZF
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
