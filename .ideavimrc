@@ -1,6 +1,8 @@
 # Vim Setup
 let mapleader=" "
 
+imap jj <Esc> 
+
 # Options
 set clipboard+=unnamed # Sync clipboard between OS and Webstorm
 
