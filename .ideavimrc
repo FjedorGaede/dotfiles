@@ -47,4 +47,3 @@ let g:NERDTreeMapJumpParent = 'h'
 map <leader>] <Action>(GotoNextError)
 map <leader>[ <Action>(GotoPreviousError)
 map <leader>r <Action>(MoveTabRight)
-map <leader>l <Action>(MoveTabLeft)
