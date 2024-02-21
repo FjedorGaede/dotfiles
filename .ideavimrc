@@ -47,3 +47,6 @@ let g:NERDTreeMapJumpParent = 'h'
 map <leader>] <Action>(GotoNextError)
 map <leader>[ <Action>(GotoPreviousError)
 map <leader>r <Action>(MoveTabRight)
+map <leader>l <Action>(NextSplitter)
+map <leader>h <Action>(PrevSplitter)
+map <leader>m <Action>(MoveEditorToOppositeTabGroup)
