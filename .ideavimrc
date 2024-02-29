@@ -27,6 +27,11 @@ set easymotion
 
 set surround
 
+set which-key
+set timeoutlen=800
+
+set argtextobj
+
 ## Mapping
 
 # Multiple vim-multiple-cursors
