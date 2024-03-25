@@ -8,3 +8,9 @@ xsetwacom --set 18 "PanScrollThreshold" 100
 
 xsetwacom --set 18 "Mode" "Relative"
 # Tablet
+
+
+### KEYMAPS ###
+
+setxkbmap -option "ctrl:nocaps"
+xcape -e 'Caps_Lock=Escape'
