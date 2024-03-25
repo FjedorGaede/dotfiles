@@ -50,8 +50,8 @@ let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 
 # Action remapping
-map <leader>] <Action>(GotoNextError)
-map <leader>[ <Action>(GotoPreviousError)
+map <leader>]d <Action>(GotoNextError)
+map <leader>[d <Action>(GotoPreviousError)
 map <leader>r <Action>(MoveTabRight)
 map <leader>l <Action>(NextSplitter)
 map <leader>h <Action>(PrevSplitter)
