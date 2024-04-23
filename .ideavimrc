@@ -15,6 +15,7 @@ set incsearch
 
 set hls # Highlight search result
 nnoremap <silent> <esc> :noh<cr><esc>
+set scrolloff=5
 
 ## IdeaVim specific Setup
 set idearefactormode=keep
