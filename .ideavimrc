@@ -62,3 +62,14 @@ nmap gh <Action>(ShowErrorDescription)
 map <leader>ff <Action>(GotoFile)
 map <leader>fc <Action>(RecentChangedFiles)
 map <leader>fr <Action>(RecentFiles)
+
+map <leader><leader> <Action>(GotoAction)
+
+# Git
+map <leader>gc <Action>(CheckinProject)
+map <leader>gr <Action>(Git.Rebase)
+map <leader>gb <Action>(Git.Branches)
+map <leader>gnb <Action>(Git.CreateNewBranch)
+map <leader>gf <Action>(Git.Fetch)
+map <leader>gp <Action>(Vcs.Push)
+
