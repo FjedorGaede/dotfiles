@@ -60,5 +60,5 @@ map <leader>m <Action>(MoveEditorToOppositeTabGroup)
 nmap gh <Action>(ShowErrorDescription)
 
 map <leader>ff <Action>(GotoFile)
-map <leader>fo <Action>(RecentChangedFiles)
+map <leader>fc <Action>(RecentChangedFiles)
 map <leader>fr <Action>(RecentFiles)
