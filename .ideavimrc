@@ -58,3 +58,7 @@ map <leader>l <Action>(NextSplitter)
 map <leader>h <Action>(PrevSplitter)
 map <leader>m <Action>(MoveEditorToOppositeTabGroup)
 nmap gh <Action>(ShowErrorDescription)
+
+map <leader>ff <Action>(GotoFile)
+map <leader>fo <Action>(RecentChangedFiles)
+map <leader>fr <Action>(RecentFiles)
