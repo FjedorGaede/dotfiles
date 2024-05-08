@@ -73,3 +73,6 @@ map <leader>gnb <Action>(Git.CreateNewBranch)
 map <leader>gf <Action>(Git.Fetch)
 map <leader>gp <Action>(Vcs.Push)
 
+# run config
+map <leader>rc <Action>(RunConfiguration)
+map <leader>rr <Action>(Run)
