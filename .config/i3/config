@@ -208,3 +208,6 @@ bar {
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
+
+#### Assign windows ####
+include private.conf
