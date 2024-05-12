@@ -209,5 +209,6 @@ bar {
 #######################################################################
 exec i3-config-wizard
 
-#### Assign windows ####
+#### Custom Configurations ####
+include customization.conf
 include private.conf
