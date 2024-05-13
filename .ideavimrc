@@ -66,6 +66,7 @@ map <leader>fr <Action>(RecentFiles)
 map <leader><leader> <Action>(GotoAction)
 
 
+# Incremental selection
 map <leader>w <Action>(EditorSelectWord)
 map <leader>W <Action>(EditorUnSelectWord)
 
@@ -76,7 +77,9 @@ map <leader>gb <Action>(Git.Branches)
 map <leader>gnb <Action>(Git.CreateNewBranch)
 map <leader>gf <Action>(Git.Fetch)
 map <leader>gp <Action>(Vcs.Push)
+map <leader>gcpr <Action>(Github.Create.Pull.Request)
 
 # run config
 map <leader>rc <Action>(RunConfiguration)
 map <leader>rr <Action>(Run)
+map <leader>rs <Action>(Stop)
