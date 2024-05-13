@@ -65,6 +65,10 @@ map <leader>fr <Action>(RecentFiles)
 
 map <leader><leader> <Action>(GotoAction)
 
+
+map <leader>w <Action>(EditorSelectWord)
+map <leader>W <Action>(EditorUnSelectWord)
+
 # Git
 map <leader>gc <Action>(CheckinProject)
 map <leader>gr <Action>(Git.Rebase)
