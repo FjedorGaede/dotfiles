@@ -13,6 +13,8 @@ set ignorecase
 set smartcase
 set incsearch
 
+set showcmd
+
 set hls # Highlight search result
 nnoremap <silent> <esc> :noh<cr><esc>
 set scrolloff=5
@@ -27,6 +29,9 @@ Plug 'tpope/vim-commentary'
 set matchit
 set easymotion
 
+set highlightedyank
+let g:highlightedyank_highlight_duration = "150"
+
 set surround
 
 set which-key
@@ -35,6 +40,10 @@ set timeoutlen=800
 set argtextobj
 
 ## Mapping
+
+# Create empty line above or below
+nmap zj o<ESC>k
+nmap zk O<ESC>j
 
 # Multiple vim-multiple-cursors
 set multicursor
@@ -45,14 +54,27 @@ map mp <A-p>
 # Easymotion
 map <leader>s <Plug>(easymotion-s)
 
+# Custom utils
+map gs :g/selector: /g<CR>4w
+
 # Nerd Tree
 set NERDTree
 let g:NERDTreeMapActivateNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 
 # Action remapping
-map <leader>]d <Action>(GotoNextError)
-map <leader>[d <Action>(GotoPreviousError)
+nmap [[ <Action>(MethodUp)
+nmap ]] <Action>(MethodDown)
+
+" Keys from vim-gitgutter
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [c <Action>(VcsShowPrevChangeMarker)
+" Not from vim-gitgutter. ={motion} is for indenting. =c does nothing
+nmap =c <Action>(VcsShowCurrentChangeMarker)
+
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+
 map <leader>r <Action>(MoveTabRight)
 map <leader>l <Action>(NextSplitter)
 map <leader>h <Action>(PrevSplitter)
@@ -64,7 +86,10 @@ map <leader>fc <Action>(RecentChangedFiles)
 map <leader>fr <Action>(RecentFiles)
 
 map <leader><leader> <Action>(GotoAction)
-
+map R <Action>(RenameElement)
+map g, <Action>(JumpToLastChange)
+map g. <Action>(JumpToNextChange)
+map <leader>ss <Action>(SelectInProjectView)
 
 # Incremental selection
 map <leader>w <Action>(EditorSelectWord)
@@ -83,3 +108,9 @@ map <leader>gcpr <Action>(Github.Create.Pull.Request)
 map <leader>rc <Action>(RunConfiguration)
 map <leader>rr <Action>(Run)
 map <leader>rs <Action>(Stop)
+
+# move lines up and down
+nmap <C-j> <Action>(MoveLineDown)
+xmap <C-j> <Action>(MoveLineDown)
+nmap <C-k> <Action>(MoveLineUp)
+xmap <C-k> <Action>(MoveLineUp)
