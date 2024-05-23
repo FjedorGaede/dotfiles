@@ -52,7 +52,7 @@ map mx <A-x>
 map mp <A-p>
 
 # Easymotion
-map <leader>s <Plug>(easymotion-s)
+map s <Plug>(easymotion-s)
 
 # Custom utils
 map gs :g/selector: /g<CR>4w
@@ -65,6 +65,10 @@ let g:NERDTreeMapJumpParent = 'h'
 # Action remapping
 nmap [[ <Action>(MethodUp)
 nmap ]] <Action>(MethodDown)
+
+# Template
+map <M-j> <Action>(PrevTemplateVariable)
+map <M-k> <Action>(NextTemplateVariable)
 
 " Keys from vim-gitgutter
 nmap ]c <Action>(VcsShowNextChangeMarker)
@@ -84,8 +88,9 @@ nmap gh <Action>(ShowErrorDescription)
 map <leader>ff <Action>(GotoFile)
 map <leader>fc <Action>(RecentChangedFiles)
 map <leader>fr <Action>(RecentFiles)
+map <leader>fs <Action>(FindInPath)
 
-map <leader><leader> <Action>(GotoAction)
+map <leader>a <Action>(GotoAction)
 map R <Action>(RenameElement)
 map g, <Action>(JumpToLastChange)
 map g. <Action>(JumpToNextChange)
@@ -103,6 +108,7 @@ map <leader>gnb <Action>(Git.CreateNewBranch)
 map <leader>gf <Action>(Git.Fetch)
 map <leader>gp <Action>(Vcs.Push)
 map <leader>gcpr <Action>(Github.Create.Pull.Request)
+map <leader>gz <Action>(Vcs.RollbackChangedLines)
 
 # run config
 map <leader>rc <Action>(RunConfiguration)
