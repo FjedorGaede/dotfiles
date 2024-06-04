@@ -45,6 +45,8 @@ set argtextobj
 nmap zj o<ESC>k
 nmap zk O<ESC>j
 
+nmap <leader>; /\v;/<CR>:noh<CR>
+
 # Multiple vim-multiple-cursors
 set multicursor
 map mc <A-n>
