@@ -23,7 +23,7 @@ set scrolloff=5
 set idearefactormode=keep
 set ideajoin
 
-vnoremap p "0p
+vnoremap p ""p
 ## Plugins
 Plug 'tpope/vim-commentary'
 set matchit
@@ -41,11 +41,17 @@ set argtextobj
 
 ## Mapping
 
+# Move forward and backward fix. This should be solved in the future releases
+# but is still buggy
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+
 # Create empty line above or below
 nmap zj o<ESC>k
 nmap zk O<ESC>j
 
 nmap <leader>; /\v;/<CR>:noh<CR>
+nmap daf /^\s*}\s*$<CR>V?function<CR>d:noh<CR>
 
 # Multiple vim-multiple-cursors
 set multicursor
