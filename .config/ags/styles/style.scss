@@ -1,0 +1,198 @@
+@import './mixins/unset';
+
+$darker_blue: #0d222a;
+$dark_blue: #124f5d;
+$blue: #66aede;
+$light_blue: #8dcfdd;
+
+$dark_red: #7d301e;
+$red: #c14726;
+$orange: #fb875a;
+$light_orange: #f9dfc6;
+
+$dark_purple: #56234f;
+$light_purple: #dbb3dd;
+
+$dark_green: #3b4537;
+$light_green: #3b4537;
+
+$darkest_gray: #0a1b21;
+$darker_gray: #383333;
+$dark_gray: #636262;
+$gray: #979292;
+$light_gray: #ded9d9;
+
+$border-radius: 0.4em;
+
+.bar {
+  background-color: $darkest_gray;
+}
+
+.dateWidget {
+  button {
+    background-color: $red;
+  }
+}
+
+window#control-settings {
+  >* {
+    margin: 5px 25px;
+  }
+
+  .control-settings {
+    @include unset;
+
+    background-color: $darkest_gray;
+    min-width: 400px;
+    padding: 16px;
+  }
+
+  .setting-sliders {
+    padding: 12px;
+    background-color: $darker_blue;
+    border-radius: $border-radius;
+
+    >*:not(:last-child) {
+      padding-bottom: 12px;
+    }
+  }
+}
+
+.icon-button {
+  @include unset;
+
+  margin-right: 12px;
+
+  image {
+    padding: 2px;
+  }
+
+  &:hover {
+    background-color: $orange;
+    border-radius: $border-radius;
+  }
+}
+
+.button-unset {
+  @include unset;
+}
+
+.panel-button {
+  @include unset;
+  font-weight: bold;
+
+  >* {
+    padding: 2px 8px;
+    border-radius: $border-radius;
+  }
+
+  image {
+    padding: 0 2px;
+  }
+
+  &:hover {
+    >* {
+      // This is for aving some overay over the elements inside to give a little effect to highlight 
+      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.workspaces {
+  border-radius: $border-radius;
+  padding: 0 4px;
+  background-color: $dark_blue;
+
+  image {
+    min-width: 12px;
+    padding: 0 2px;
+  }
+
+  .is-active {
+    color: $blue;
+  }
+
+  .is-urgent {
+    color: $red;
+  }
+
+  .has-content {
+    color: $light_gray;
+  }
+
+  .inactive {
+    color: $light_gray;
+    opacity: 0.4;
+  }
+}
+
+
+.controls {
+  background-color: $dark_blue;
+}
+
+.interactive-slider {
+  @include unset;
+
+  trough {
+    min-height: 0.8em;
+    border-radius: 0.8em;
+    border: 1px transparent;
+    background-color: $dark_gray;
+
+    highlight {
+      @include unset;
+
+      background-color: $blue;
+      min-height: 0.6em;
+      border-radius: 0.8em;
+      border: 1px transparent;
+    }
+  }
+
+  slider {
+    @include unset;
+  }
+}
+
+.indicator {
+  font-weight: bold;
+
+  label {
+    margin-left: 8px;
+  }
+}
+
+.arrow-button {
+
+  &.active {
+    .button {
+      background-color: $dark_blue;
+      color: white;
+    }
+  }
+
+  button {
+    @include unset;
+  }
+
+  .button {
+    &.right {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    &.left {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+
+    padding: 8px;
+    background-color: $darker_blue;
+    color: $gray;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
