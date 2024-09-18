@@ -1,29 +1,27 @@
-import { Bar, ControlsSettings } from "widgets/bar/bar";
+import "lib/session";
+import "scss/style";
+import "globals/useTheme";
+import "globals/mousePos";
 
-// -- SCSS & CSS -- //
-const scss = `${App.configDir}/styles/style.scss`;
-const css = "/tmp/style.css";
-Utils.exec(`sassc ${scss} ${css}`);
-
-// - Auto Reload CSS - //
-Utils.monitorFile(
-  // directory that contains the scss files
-  `${App.configDir}/styles`,
-
-  // reload function
-  () => {
-    // compile, reset, apply
-    Utils.exec(`sassc ${scss} ${css}`);
-    console.warn("reload css");
-    App.resetCss();
-    App.applyCss(css);
-  },
-);
+import { Bar } from "modules/bar/Bar";
+import MenuWindows from "./modules/menus/main.js";
+import SettingsDialog from "widget/settings/SettingsDialog";
+import Notifications from "./modules/notifications/index.js";
+import { forMonitors } from "lib/utils";
+import OSD from "modules/osd/index";
 
 App.config({
-  style: css,
-  windows: [Bar(0), ControlsSettings()],
-  onConfigParsed: () => {
-    // App.closeWindow("control-settings");
-  },
-});
+    onConfigParsed: () => Utils.execAsync(`python3 ${App.configDir}/services/bluetooth.py`),
+    windows: [
+        ...MenuWindows,
+        Notifications(),
+        SettingsDialog(),
+        ...forMonitors(Bar),
+        OSD(),
+    ],
+    closeWindowDelay: {
+        sideright: 350,
+        launcher: 350,
+        bar0: 350,
+    },
+})
