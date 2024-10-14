@@ -1,27 +1,38 @@
-import "lib/session";
-import "scss/style";
-import "globals/useTheme";
-import "globals/mousePos";
+import { Bar } from "bar/bar";
+import { DesktopWidgetWindow } from "desktop-widgets/desktop-widget";
 
-import { Bar } from "modules/bar/Bar";
-import MenuWindows from "./modules/menus/main.js";
-import SettingsDialog from "widget/settings/SettingsDialog";
-import Notifications from "./modules/notifications/index.js";
-import { forMonitors } from "lib/utils";
-import OSD from "modules/osd/index";
+// -- SCSS & CSS -- //
+const scss = `${App.configDir}/styles/style.scss`;
+const css = "/tmp/style.css";
+compileScss();
+
+// - Auto Reload CSS - //
+Utils.monitorFile(
+  // directory that contains the scss files
+  `${App.configDir}/styles`,
+
+  // reload function
+  () => {
+    // compile, reset, apply
+
+    compileScss();
+    console.warn("reload css");
+    App.resetCss();
+    App.applyCss(css);
+  },
+);
 
 App.config({
-    onConfigParsed: () => Utils.execAsync(`python3 ${App.configDir}/services/bluetooth.py`),
-    windows: [
-        ...MenuWindows,
-        Notifications(),
-        SettingsDialog(),
-        ...forMonitors(Bar),
-        OSD(),
-    ],
-    closeWindowDelay: {
-        sideright: 350,
-        launcher: 350,
-        bar0: 350,
-    },
-})
+  style: css,
+  windows: [
+    Bar(0),
+    // DesktopWidgetWindow(0),
+  ],
+});
+
+function compileScss() {
+  const result = Utils.exec(`sassc ${scss} ${css}`);
+  if (result) {
+    console.error(`There went something wrong compiling the SCSS: ${result}`);
+  }
+}
