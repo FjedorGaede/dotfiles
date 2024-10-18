@@ -419,3 +419,26 @@ $progress-height: 0.9rem;
     }
   }
 }
+
+.hints {
+  .hint {
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    .battery {
+      &.critical {
+        color: $system-info-critical;
+      }
+
+      &.warning {
+        color: $system-info-orange;
+      }
+    }
+
+    .notifications {
+      color: $light_gray;
+    }
+  }
+}

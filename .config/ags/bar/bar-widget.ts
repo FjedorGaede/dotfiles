@@ -1,8 +1,10 @@
 import type Gtk from "types/@girs/gtk-3.0/gtk-3.0";
+import type { Binding } from "types/service";
 
 export const BarWidget = (
   widget: Gtk.Widget,
   position: "left" | "right" | "center",
+  visible?: Binding<any, any, boolean>,
 ) => {
   const setRoundedRight = ["left", "center"].includes(position);
   const setRoundedLeft = ["right", "center"].includes(position);
@@ -20,6 +22,7 @@ export const BarWidget = (
   return Widget.Box({
     classNames: ["widget"],
     hpack: position === "right" ? "end" : "start",
+    visible: visible ? visible : true,
     children: [
       Widget.Box({
         classNames: classes,
