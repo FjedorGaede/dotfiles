@@ -12,6 +12,7 @@ const Temperature = Widget.Label({
 });
 
 const Position = Widget.Box({
+  hpack: "center",
   className: "position",
   tooltipText: coordinates
     .bind()
@@ -38,16 +39,17 @@ const LastRefresh = Widget.Label({
 
 export const WeatherWidget = Widget.Box({
   classNames: ["weather", "box"],
+  hpack: "center",
   vertical: true,
   children: [
-    Position,
     Widget.Box({
       vertical: true,
+      vpack: "center",
       children: [
-        Widget.Box({
-          children: [WeatherIcon, Temperature],
-        }),
-        LastRefresh,
+        WeatherIcon,
+        Temperature,
+        Position,
+        // LastRefresh
       ],
     }),
   ],

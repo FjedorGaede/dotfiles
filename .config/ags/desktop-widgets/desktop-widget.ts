@@ -1,6 +1,7 @@
 import { Clock } from "./clock";
 import { ControlsWidget } from "./controls-widget";
-import { MediaPlayers } from "./media";
+import { HomeAssistantWidget } from "./homeassistant";
+import { Media } from "./media";
 import { SystemInfo } from "./system-info";
 import { SystemTray } from "./system-tray";
 import { WeatherWidget } from "./weather";
@@ -10,19 +11,30 @@ export function DesktopWidgetWindow(monitor = 0) {
     monitor,
     exclusivity: "normal",
     name: `desktopWidgetWindow${monitor}`,
-    anchor: ["right"],
     layer: "overlay",
-    // anchor: [],
-    // layer: "background",
+    anchor: ["right", "left", "top", "bottom"],
     className: "desktop-widget-window",
+    visible: false,
     child: Widget.Box({
       vertical: true,
+      vpack: "center",
+      hpack: "center",
       children: [
-        Widget.Box({ children: [SystemInfo, Clock] }),
-        ControlsWidget,
-        // MediaPlayers,
-        WeatherWidget,
-        SystemTray,
+        Widget.Box({
+          children: [Clock, WeatherWidget, Media],
+        }),
+        Widget.Box({
+          children: [
+            ControlsWidget,
+            Widget.Box({
+              vertical: true,
+              children: [SystemInfo, SystemTray],
+            }),
+          ],
+        }),
+        // Media,
+        // WeatherWidget,
+        // HomeAssistantWidget, // Just beta
       ],
       className: "desktop-widget",
     }),

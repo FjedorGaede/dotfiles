@@ -1,3 +1,4 @@
+import { Binding } from "types/service";
 import { LeftWidget } from "./left";
 import { MiddleWidget } from "./middle";
 import { RightWidget } from "./right";

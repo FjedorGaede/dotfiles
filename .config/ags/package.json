@@ -4,6 +4,8 @@
     "eslint": "^9.4.0"
   },
   "dependencies": {
-    "eslint_d": "^13.1.2"
+    "eslint_d": "^13.1.2",
+    "home-assistant-js-websocket": "^9.4.0",
+    "ws": "^8.18.0"
   }
 }

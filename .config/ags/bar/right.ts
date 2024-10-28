@@ -104,7 +104,7 @@ const ShowHintsVariable = Utils.merge(
 );
 
 // Used to decide if the widget should be shown at all on the bar
-const ShowHintsWidget = ShowHintsVariable.as((showHints: ShowHint[]) => {
+export const ShowHintsWidget = ShowHintsVariable.as((showHints: ShowHint[]) => {
   return showHints.some((showHint) => showHint.show === true);
 });
 

@@ -24,10 +24,7 @@ Utils.monitorFile(
 
 App.config({
   style: css,
-  windows: [
-    Bar(0),
-    // DesktopWidgetWindow(0),
-  ],
+  windows: [Bar(0), DesktopWidgetWindow(0)],
 });
 
 function compileScss() {

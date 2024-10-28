@@ -9,23 +9,32 @@ export const BarWidget = (
   const setRoundedRight = ["left", "center"].includes(position);
   const setRoundedLeft = ["right", "center"].includes(position);
 
-  const classes: string[] = ["panel"];
+  const childClasses: string[] = ["panel"];
 
   if (setRoundedRight) {
-    classes.push("rounded-right");
+    childClasses.push("rounded-right");
   }
 
   if (setRoundedLeft) {
-    classes.push("rounded-left");
+    childClasses.push("rounded-left");
   }
 
+  const classes = (visible || Variable(true).bind()).as((visible) => {
+    const classes = ["widgets"];
+
+    if (!visible) {
+      classes.push("invisible");
+    }
+
+    return classes;
+  });
+
   return Widget.Box({
-    classNames: ["widget"],
     hpack: position === "right" ? "end" : "start",
-    visible: visible ? visible : true,
+    classNames: classes,
     children: [
       Widget.Box({
-        classNames: classes,
+        classNames: childClasses,
         child: widget,
       }),
     ],

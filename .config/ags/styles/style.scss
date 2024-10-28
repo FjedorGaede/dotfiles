@@ -29,10 +29,26 @@ $light_gray: #ded9d9;
 $border-radius: 0.4em;
 
 $slider-height: 0.9rem;
+$slider-background-color: #3e4549;
+$slider-hightlight-color: $light_gray;
 
 $panel-background: #2d3539;
 
 $hover-select-color: rgba(255, 255, 255, 0.3);
+
+$window-width: 1000px;
+
+$widget-small-width: 160px;
+$widget-medium-width: 300px;
+
+.invisible {
+  opacity: 0;
+  background: transparent;
+  outline-color: transparent;
+  border-color: transparent;
+  color: transparent;
+  box-shadow: none;
+}
 
 .desktop-widget-window {
   font-family: "JetBrainsMono NFP";
@@ -40,8 +56,8 @@ $hover-select-color: rgba(255, 255, 255, 0.3);
 }
 
 .desktop-widget {
-  padding: 12px;
   background-color: transparent;
+  min-width: $window-width;
 }
 
 .button-unset {
@@ -63,32 +79,43 @@ $hover-select-color: rgba(255, 255, 255, 0.3);
 }
 
 .controls {
+  min-width: 400px;
 
   .control-icon {
     min-width: 30px;
   }
 
-  scale slider {
+  slider {
     @include remove-slider;
   }
 
-  scale highlight {
-    background-color: red;
-    color: red;
+  trough {
+    background-color: $slider-background-color;
+    border-color: transparent;
+  }
+
+  highlight {
+    background-color: $slider-hightlight-color;
     min-height: $slider-height;
   }
+
 }
 
 
 .clock {
+  min-width: $widget-small-width;
 
   .time {
-    font-size: 32px;
+    font-size: 38px;
     font-weight: 800;
   }
 
+  .day {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
   .date {
-    margin-top: 8px;
     font-size: 16px;
     font-weight: 400;
   }
@@ -197,7 +224,7 @@ $hover-select-color: rgba(255, 255, 255, 0.3);
 // -- SYSTEM INFO -- //
 
 // System info controls color 
-$background-progress: #3e4549;
+$background-progress: $slider-background-color;
 $system-info-red: #e36657;
 $system-info-green: #b5d463;
 $system-info-blue: #72b8c3;
@@ -224,9 +251,8 @@ $storage-critical: $system-info-critical;
 $progress-height: 0.9rem;
 
 .system-stats {
-  min-width: 220px;
-
   // Make the this look much better 
+  min-width: 300px;
   padding-top: 1.0rem;
   padding-right: 1rem;
   padding-left: 1.1rem;
@@ -357,24 +383,105 @@ $progress-height: 0.9rem;
   }
 }
 
+// -- Media player -- //
+.media-player {
+  .cover {
+    $size: 140px;
+    min-width: $size;
+    min-height: $size;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-right: 1.8rem;
+  }
+
+  .rightSide {
+    $gap: 4px;
+
+    padding-right: 1.0rem;
+
+    .title {
+      font-weight: bolder;
+      font-size: 16px;
+      margin-bottom: $gap;
+    }
+
+    .artist {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: $gap;
+    }
+
+    .album {
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .positionLabel {
+      // font-weight: bold;
+      font-size: 12px;
+    }
+
+    .controls {
+
+      .control-button {
+        &:not(:last-child) {
+          margin-right: 4px;
+        }
+
+        @include unset;
+        $size: 22px;
+
+        background-color: $darkest_gray;
+        color: $light_gray;
+        min-width: $size;
+        min-height: $size;
+        padding: 2px;
+        border-radius: 4px;
+      }
+    }
+
+    .slider {
+      padding: 16px 0;
+
+      slider {
+        @include remove-slider;
+      }
+
+      trough {
+        background-color: $slider-background-color;
+        border-color: transparent;
+      }
+
+      highlight {
+        background-color: $slider-hightlight-color;
+        min-height: $slider-height;
+      }
+    }
+  }
+
+}
+
 // -- Weather Widget -- //
 .weather {
+  min-width: $widget-small-width;
+
   .position {
     font-size: .9rem;
-    margin-bottom: -1.5rem;
 
     .location-icon {
       margin-right: .5rem;
     }
 
     .city {
-      font-weight: bolder;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
 
   .weather-icon {
     font-size: 6rem;
-    margin-right: 1rem;
+    margin: -1.7rem 0;
   }
 
   .temperature {
@@ -382,7 +489,6 @@ $progress-height: 0.9rem;
   }
 
   .last-refresh {
-    margin-top: -2.5rem;
     font-size: .6rem;
     color: $light_gray;
     opacity: .7;
