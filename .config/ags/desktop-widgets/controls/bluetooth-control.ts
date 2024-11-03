@@ -1,3 +1,5 @@
+import { openAnotherProgram } from "_shared/open-another-program";
+
 const bluetooth = await Service.import("bluetooth");
 
 export const BluetoothControl = Widget.Box({
@@ -14,8 +16,9 @@ export const BluetoothControl = Widget.Box({
       className: "connection-wrapper",
       child: Widget.Button({
         className: "button-unset",
-        // onClicked: () => App.openWindow(BLUETOOTH_DIALOG_NAME),
-        onClicked: () => Utils.exec("blueman-manager"),
+        onClicked: async () => {
+          openAnotherProgram(App, () => Utils.exec("blueman-manager"));
+        },
         child: Widget.Box({
           setup: (self) =>
             self.hook(bluetooth, (self) => {

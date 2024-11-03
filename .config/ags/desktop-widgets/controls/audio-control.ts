@@ -1,3 +1,4 @@
+import { openAnotherProgram } from "_shared/open-another-program";
 import { buildControl } from "./_shared/build-control";
 const audio = await Service.import("audio");
 
@@ -31,7 +32,8 @@ export const AudioControl = buildControl({
   min: 0,
   icon: audioIcon,
   label: audio.speaker.bind("description").as((desc) => desc || ""),
-  settingClick: () => Utils.exec("pavucontrol --tab=3"),
+  settingClick: () =>
+    openAnotherProgram(App, () => Utils.exec("pavucontrol --tab=3")),
   onClicked: () => {
     const isMutedAndLowVolume =
       audio.speaker.is_muted && audio.speaker.volume < 0.15;

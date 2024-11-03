@@ -1,4 +1,6 @@
+import { openAnotherProgram } from "_shared/open-another-program";
 import { buildControl } from "./_shared/build-control";
+import { sleep } from "_shared/sleep";
 const audio = await Service.import("audio");
 
 const microphoneIcon = Utils.merge(
@@ -16,7 +18,8 @@ export const MicrophoneControl = buildControl({
   min: 0,
   icon: microphoneIcon,
   label: audio.microphone.bind("description").as((desc) => desc || ""),
-  settingClick: () => Utils.exec("pavucontrol --tab=4"),
+  settingClick: () =>
+    openAnotherProgram(App, () => Utils.exec("pavucontrol --tab=4")),
   onClicked: () => {
     const isMutedAndLowVolume =
       audio.microphone.is_muted && audio.microphone.volume < 0.15;

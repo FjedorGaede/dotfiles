@@ -6,7 +6,7 @@ export type ControlOptions = {
   min?: number;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   label?: Binding<any, any, string>;
-  settingClick?: () => void;
+  settingClick?: () => Promise<void>;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   sliderValue: Binding<any, any, number>;
 
