@@ -283,6 +283,12 @@ const batteryInfo = showStat({
 export const SystemInfo = Widget.Box({
   vertical: true,
   vexpand: true,
-  classNames: ["system-stats", "box"],
-  children: [cpuInfo, ramInfo, swapInfo, storageInfo, batteryInfo],
+  hexpand: true,
+  classNames: ["box"],
+  child: Widget.Box({
+    vertical: true,
+    vpack: "center",
+    classNames: ["system-stats"],
+    children: [cpuInfo, ramInfo, swapInfo, storageInfo, batteryInfo],
+  }),
 });

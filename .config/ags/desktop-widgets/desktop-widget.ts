@@ -15,6 +15,13 @@ export function DesktopWidgetWindow(monitor = 0) {
     anchor: ["right", "left", "top", "bottom"],
     className: "desktop-widget-window",
     visible: false,
+    setup: (self) => {
+      self.on("key-press-event", (self, event) => {
+        console.warn("event", event);
+      });
+
+      return self;
+    },
     child: Widget.Box({
       vertical: true,
       vpack: "center",
