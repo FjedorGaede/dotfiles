@@ -20,17 +20,17 @@ export const BatteryStatusVariable = Variable.derive(
     const warningThreshold = 25;
     const criticalThreshold = 10;
 
-    // if (!charging) {
-    // if (batteryPercent < criticalThreshold) {
-    return "critical";
-    // }
+    if (!charging) {
+      if (batteryPercent < criticalThreshold) {
+        return "critical";
+      }
 
-    // if (batteryPercent < warningThreshold) {
-    //   return "warning";
-    // }
-    // }
+      if (batteryPercent < warningThreshold) {
+        return "warning";
+      }
+    }
 
-    // return "normal";
+    return "normal";
   },
 );
 
