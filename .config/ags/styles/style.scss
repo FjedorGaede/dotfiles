@@ -1,529 +1,47 @@
 @import './mixins/unset';
-@import './mixins/remove-slider';
+@import './mixins/invisible';
+@import './colors.scss';
 
-$border-radius: 0.4em;
-
-$darker_blue: #0d222a;
-$dark_blue: #124f5d;
-$blue: #66aede;
-$light_blue: #8dcfdd;
-
-$dark_red: #7d301e;
-$red: #c14726;
-
-$orange: #fb875a;
-$light_orange: #f9dfc6;
-
-$dark_purple: #56234f;
-$light_purple: #dbb3dd;
-
-$dark_green: #3b4537;
-$light_green: #3b4537;
-
-$darkest_gray: #0a1b21;
-$darker_gray: #383333;
-$dark_gray: #636262;
-$gray: #979292;
-$light_gray: #ded9d9;
-
-$border-radius: 0.4em;
-
-$slider-height: 0.9rem;
-$slider-background-color: #3e4549;
-$slider-hightlight-color: $light_gray;
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$theme_fg_color: "@theme_fg_color";
+$theme_bg_color: "@theme_bg_color";
 
 $panel-background: #2d3539;
 
-$hover-select-color: rgba(255, 255, 255, 0.3);
-
-$window-width: 1000px;
-
-$widget-small-width: 160px;
-$widget-medium-width: 300px;
+button.button-unset {
+  @include unset;
+}
 
 .invisible {
-  opacity: 0;
-  background: transparent;
-  outline-color: transparent;
-  border-color: transparent;
-  color: transparent;
-  box-shadow: none;
+  @include invisible;
 }
 
-.desktop-widget-window {
+window.Bar {
   font-family: "JetBrainsMono NFP";
-  background-color: transparent;
-}
 
-.desktop-widget {
-  background-color: transparent;
-  min-width: $window-width;
-}
-
-.button-unset {
-  @include unset;
-}
-
-
-.box {
-  @include unset;
-  border-radius: 8px;
-
-  background-color: $panel-background;
-  color: white;
-
-  padding: 8px;
-
-  margin-left: 8px;
-  margin-bottom: 8px;
-}
-
-.controls {
-  min-width: 400px;
-
-  padding-right: 12px;
-
-  .control-icon {
-    min-width: 30px;
-  }
-
-  slider {
-    @include remove-slider;
-  }
-
-  trough {
-    background-color: $slider-background-color;
-    border-color: transparent;
-  }
-
-  highlight {
-    background-color: $slider-hightlight-color;
-    min-height: $slider-height;
-  }
-
-}
-
-
-.clock {
-  min-width: $widget-small-width;
-
-  .time {
-    font-size: 38px;
-    font-weight: 800;
-  }
-
-  .day {
-    font-size: 16px;
-    font-weight: 400;
-  }
-
-  .date {
-    font-size: 16px;
-    font-weight: 400;
-  }
-}
-
-.system-tray {
-
-  .system-tray-item {
-    @include unset;
-
-    font-size: 30px;
-
-    &:not(:first-child) {
-      margin-left: 4px;
-    }
-  }
-}
-
-.other-connections {
-
-  .revealer-caret {
-    padding-right: 8px;
-  }
-
-  .other-connection {
-    border-radius: 4px;
-
-    &:hover {
-      background-color: $hover-select-color;
-    }
-  }
-
-}
-
-.connection-controls {
-  .connection-control {
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
-
-    .connection-header {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .connection-wrapper {
-      border-radius: 4px;
-
-      &:hover {
-        background-color: $hover-select-color;
-      }
-    }
-
-    .connection {
-      padding-left: 4px;
-
-      &.disabled {
-        color: $dark_gray;
-      }
-
-      &.disconnected {
-        color: $gray;
-      }
-
-      .connection-icon {
-        margin-right: 8px;
-        font-size: 16px;
-      }
-
-      .connection-name {
-        font-weight: bold;
-      }
-    }
-  }
-}
-
-
-.dialog-window {
-  background-color: $orange;
-  border-radius: $border-radius;
-}
-
-.dialog {
-  padding: 8px 12px;
-
-  .dialog-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 12px;
-
-    .dialog-header-label {
-      margin-right: 8px;
-    }
-
-    .dialog-header-close {
-      border-radius: $border-radius;
-
-      button {
-        padding: 0 6px;
-      }
-    }
-  }
-}
-
-// -- SYSTEM INFO -- //
-
-// System info controls color 
-$background-progress: $slider-background-color;
-$system-info-red: #e36657;
-$system-info-green: #b5d463;
-$system-info-blue: #72b8c3;
-$system-info-purple: #cd78c1;
-$system-info-orange: #e49453;
-$system-info-yellow: #ffea96;
-$system-info-critical: red;
-
-$battery: $system-info-purple;
-$battery-critical: $system-info-critical;
-
-$ram: $system-info-green;
-$ram-critical: $system-info-critical;
-
-$cpu: $system-info-red;
-$cpu-critical: $system-info-critical;
-
-$swap: $system-info-blue;
-$swap-critical: $system-info-critical;
-
-$storage: $system-info-yellow;
-$storage-critical: $system-info-critical;
-
-$progress-height: 0.9rem;
-
-.system-stats {
-  // Make the this look much better 
-  min-width: 300px;
-  padding-top: 1.0rem;
-  padding-right: 1rem;
-  padding-left: 1.1rem;
-
-  .system-stat {
-    &:not(:last-child) {
-      margin-bottom: .2rem;
-    }
-
-    // This is needed to fix the issue that we need to have a min width on the icons to be all sized in a proper way and be aligned
-    margin-right: .5rem;
-
-    .icon {
-      @include unset;
-
-      font-size: 1.6rem;
-      min-width: 2rem;
-      margin-right: 0.6rem;
-    }
-
-    .label {
-      font-size: .8rem;
-      margin-top: -.3rem;
-    }
-
-    levelbar {
-      @include unset;
-
-      border-radius: 0.4em;
-      background-color: $darkest_gray;
-
-      trough {
-        @include unset;
-        min-height: $progress-height;
-        border-radius: 0.4em;
-      }
-
-      block {
-        border-radius: 0.4em;
-
-        &.filled {
-          border: none;
-          background-color: $dark_gray;
-        }
-
-        &.empty {
-          background-color: $background-progress;
-        }
-      }
-    }
-
-    &.cpu {
-
-      .icon,
-      .label {
-        color: $cpu;
-      }
-
-      .progress-bar block.filled {
-        background-color: $cpu;
-      }
-    }
-
-    &.ram {
-
-      .icon,
-      .label {
-        color: $ram;
-      }
-
-      // Looks too big in the standard size
-      .icon {
-        font-size: 1.4rem;
-      }
-
-      .progress-bar block.filled {
-        background-color: $ram;
-      }
-    }
-
-    &.storage {
-
-      .icon,
-      .label {
-        color: $storage;
-      }
-
-      .progress-bar block.filled {
-        background-color: $storage;
-      }
-    }
-
-    &.swap {
-
-      .icon,
-      .label {
-        color: $swap;
-      }
-
-      .progress-bar block.filled {
-        background-color: $swap;
-      }
-    }
-
-    &.battery {
-
-      .icon,
-      .label {
-        color: $battery;
-      }
-
-      .progress-bar block.filled {
-        background-color: $battery;
-      }
-    }
-
-    &.battery-critical {
-
-      .icon,
-      .label {
-        color: $battery-critical;
-      }
-
-      .progress-bar block.filled {
-        background-color: $battery-critical;
-      }
-    }
-  }
-}
-
-// -- Media player -- //
-.media-player {
-  .cover {
-    $size: 140px;
-    min-width: $size;
-    min-height: $size;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    margin-right: 1.8rem;
-  }
-
-  .rightSide {
-    $gap: 4px;
-
-    padding-right: 1.0rem;
-
-    .title {
-      font-weight: bolder;
-      font-size: 16px;
-      margin-bottom: $gap;
-    }
-
-    .artist {
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: $gap;
-    }
-
-    .album {
-      font-weight: bold;
-      font-size: 12px;
-    }
-
-    .positionLabel {
-      // font-weight: bold;
-      font-size: 12px;
-    }
-
-    .controls {
-
-      .control-button {
-        &:not(:last-child) {
-          margin-right: 4px;
-        }
-
-        @include unset;
-        $size: 22px;
-
-        background-color: $darkest_gray;
-        color: $light_gray;
-        min-width: $size;
-        min-height: $size;
-        padding: 2px;
-        border-radius: 4px;
-      }
-    }
-
-    .slider {
-      padding: 16px 0;
-
-      slider {
-        @include remove-slider;
-      }
-
-      trough {
-        background-color: $slider-background-color;
-        border-color: transparent;
-      }
-
-      highlight {
-        background-color: $slider-hightlight-color;
-        min-height: $slider-height;
-      }
-    }
-  }
-
-}
-
-// -- Weather Widget -- //
-.weather {
-  min-width: $widget-small-width;
-
-  .position {
-    font-size: .9rem;
-
-    .location-icon {
-      margin-right: .5rem;
-    }
-
-    .city {
-      font-size: 16px;
-      font-weight: 400;
-    }
-  }
-
-  .weather-icon {
-    font-size: 6rem;
-    margin: -1.7rem 0;
-  }
-
-  .temperature {
-    font-size: 2rem;
-  }
-
-  .last-refresh {
-    font-size: .6rem;
-    color: $light_gray;
-    opacity: .7;
-  }
-}
-
-.bar {
-
-  .rounded-right {
-    border-bottom-right-radius: 8px;
-  }
-
-  .rounded-left {
-    border-bottom-left-radius: 8px;
-  }
+  background: transparent;
+  color: #{$theme_bg_color};
+  font-weight: bold;
 
   .panel {
     background-color: $panel-background;
     padding: .2rem .5rem;
   }
 
-  .time-widget {
-    font-weight: 600;
-    font-size: 16px;
-  }
-}
+  centerbox {
+    @include unset;
 
-.workspaces {
-  .workspaces-box {
-    margin: 0 .3rem;
+    background: transparent;
 
-    .workspace {
-      margin: 0 .4rem;
+    box.bar-widget {
+
+      .rounded-right {
+        border-bottom-right-radius: 8px;
+      }
+
+      .rounded-left {
+        border-bottom-left-radius: 8px;
+      }
     }
   }
 }
@@ -532,7 +50,7 @@ $progress-height: 0.9rem;
   .hint {
 
     &:not(:last-child) {
-      margin-right: 8px;
+      margin-right: -8px;
     }
 
     .battery {
@@ -547,6 +65,16 @@ $progress-height: 0.9rem;
 
     .notifications {
       color: $light_gray;
+    }
+  }
+}
+
+.workspaces {
+  .workspaces-box {
+    margin: 0 .3rem;
+
+    .workspace {
+      margin: 0 .3rem;
     }
   }
 }

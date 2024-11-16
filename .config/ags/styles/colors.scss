@@ -1,0 +1,41 @@
+$darker_blue: #0d222a;
+$dark_blue: #124f5d;
+$blue: #66aede;
+$light_blue: #8dcfdd;
+
+$dark_red: #7d301e;
+$red: #c14726;
+
+$orange: #fb875a;
+$light_orange: #f9dfc6;
+
+$dark_purple: #56234f;
+$light_purple: #dbb3dd;
+
+$dark_green: #3b4537;
+$light_green: #3b4537;
+
+$darkest_gray: #0a1b21;
+$darker_gray: #383333;
+$dark_gray: #636262;
+$gray: #979292;
+$light_gray: #ded9d9;
+
+// Slider //
+$slider-background-color: #3e4549;
+$slider-hightlight-color: $light_gray;
+
+// -- SYSTEM INFO -- //
+
+// System info controls color 
+$background-progress: $slider-background-color;
+$system-info-red: #e36657;
+$system-info-green: #b5d463;
+$system-info-blue: #72b8c3;
+$system-info-purple: #cd78c1;
+$system-info-orange: #e49453;
+$system-info-yellow: #ffea96;
+$system-info-critical: red;
+
+$battery: $system-info-purple;
+$battery-critical: $system-info-critical;
