@@ -1,4 +1,4 @@
-import { exec, Variable } from "../../../../../../../usr/share/astal/gjs";
+import { exec, Variable } from "/usr/share/astal/gjs";
 import { HintWidget } from "./Hint";
 
 const NumberOfNotifications = Variable<number>(0).watch(

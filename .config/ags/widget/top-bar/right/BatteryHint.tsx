@@ -1,5 +1,5 @@
 import Battery from "gi://AstalBattery";
-import { bind, Variable } from "../../../../../../../usr/share/astal/gjs";
+import { bind, Variable } from "/usr/share/astal/gjs";
 import { HintWidget } from "./Hint";
 
 type BatteryStatus = "normal" | "warning" | "critical";

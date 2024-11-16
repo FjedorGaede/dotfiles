@@ -1,4 +1,4 @@
-import { bind, Variable } from "../../../../../../usr/share/astal/gjs";
+import { bind, Variable } from "/usr/share/astal/gjs";
 import { BarWidget } from "./BarWidget";
 
 export const Center = (): JSX.Element => {

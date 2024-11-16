@@ -1,5 +1,5 @@
-import { bind, Binding, Variable } from "../../../../../../usr/share/astal/gjs";
-import { Gtk } from "../../../../../../usr/share/astal/gjs/gtk3";
+import { bind, Binding, Variable } from "/usr/share/astal/gjs";
+import { Gtk } from "/usr/share/astal/gjs/gtk3";
 
 type BarWidgetProps = {
   position: "left" | "right" | "center";

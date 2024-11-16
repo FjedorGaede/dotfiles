@@ -1,4 +1,4 @@
-import { bind, exec, Variable } from "../../../../../../../usr/share/astal/gjs";
+import { bind, Variable } from "/usr/share/astal/gjs";
 import { BarWidget } from "../BarWidget";
 import { BatteryHint, BatteryStatusVariable } from "./BatteryHint";
 import { HasNotifications, NotificationsWidget } from "./NotificationHint";
