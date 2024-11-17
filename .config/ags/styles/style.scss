@@ -26,6 +26,8 @@ window.Bar {
   .panel {
     background-color: $panel-background;
     padding: .2rem .5rem;
+
+    min-height: 20px; // Just to have a more consistent looks
   }
 
   centerbox {
@@ -44,37 +46,120 @@ window.Bar {
       }
     }
   }
-}
 
-.hints {
-  .hint {
+  .hints {
+    margin-left: -8px;
+    margin-right: -8px;
 
-    &:not(:last-child) {
-      margin-right: -8px;
-    }
+    .hint {
 
-    .battery {
-      &.critical {
-        color: $system-info-critical;
+      &:not(:last-child) {
+        margin-right: -8px;
       }
 
-      &.warning {
-        color: $system-info-orange;
+      .battery {
+        &.critical {
+          color: $system-info-critical;
+        }
+
+        &.warning {
+          color: $system-info-orange;
+        }
+      }
+
+      .notifications {
+        color: $light_gray;
       }
     }
+  }
 
-    .notifications {
-      color: $light_gray;
+  .workspaces {
+    .workspaces-box {
+      margin: 0 .3rem;
+
+      .workspace {
+        font-size: 12px;
+        margin: 0 .3rem;
+      }
     }
   }
 }
 
-.workspaces {
-  .workspaces-box {
-    margin: 0 .3rem;
+.home-window {
+  $widget-small-width: 160px;
+  $widget-medium-width: 300px;
+  $gap: 8px;
 
-    .workspace {
-      margin: 0 .3rem;
+  .panels-container {
+    .panel {
+      @include unset;
+      border-radius: 8px;
+
+      background-color: $panel-background;
+      color: white;
+
+      padding: 4px 8px;
+
+    }
+
+    .panel-row {
+      >*:not(:last-child) {
+        margin-right: $gap;
+      }
+    }
+
+  }
+
+  .clock {
+    min-width: $widget-small-width;
+
+    .time {
+      margin-top: -6px; // We need some kind of fix for the font spacing issue
+      font-size: 38px;
+      font-weight: 800;
+    }
+
+    .day {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .date {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  // -- Weather Widget -- //
+  .weather {
+    min-width: $widget-small-width;
+
+    .position {
+      font-size: .9rem;
+
+      .location-icon {
+        margin-right: .5rem;
+      }
+
+      .city {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+
+    .weather-icon {
+      font-size: 6rem;
+      margin: -1.7rem 0;
+    }
+
+    .temperature {
+      font-size: 2rem;
+    }
+
+    .last-refresh {
+      font-size: .6rem;
+      color: $light_gray;
+      opacity: .7;
     }
   }
 }

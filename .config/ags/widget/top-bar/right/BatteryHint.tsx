@@ -17,8 +17,8 @@ const BatteryStatusMap: {
 export const BatteryStatusVariable = Variable.derive(
   [bind(battery, "percentage"), bind(battery, "charging")],
   (batteryPercent, charging: boolean): BatteryStatus => {
-    const warningThreshold = 25;
-    const criticalThreshold = 10;
+    const warningThreshold = 0.25;
+    const criticalThreshold = 0.1;
 
     if (!charging) {
       if (batteryPercent < criticalThreshold) {
@@ -42,11 +42,17 @@ const BatteryHintClasses = Variable.derive(
     ),
 );
 
+const BatteryTooltip = Variable.derive(
+  [bind(battery, "percentage")],
+  (percentage: number) => `${percentage * 100}% left`,
+);
+
 export const BatteryHint = () => {
   return (
     <HintWidget>
       <button className={bind(BatteryHintClasses)}>
         <label
+          tooltipText={bind(BatteryTooltip)}
           label={BatteryStatusVariable(
             (status: BatteryStatus) => BatteryStatusMap[status].icon,
           )}

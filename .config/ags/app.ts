@@ -1,6 +1,7 @@
 import { App } from "astal/gtk3";
 import TopBar from "./widget/top-bar/TopBar";
 import { exec, monitorFile } from "/usr/share/astal/gjs";
+import HomeWindow from "./widget/home-window/home-window";
 
 const scss = `./styles/style.scss`; // Path to you style file
 const css = "/tmp/style.css"; // Could be anywhere else
@@ -23,6 +24,7 @@ App.start({
   css: css,
   main() {
     App.get_monitors().map(TopBar);
+    App.get_monitors().map(HomeWindow);
   },
 });
 
