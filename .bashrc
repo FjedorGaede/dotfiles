@@ -184,6 +184,17 @@ browse_chrome() {
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
 }
 
+# fzf github respos
+alias my-repos='~/.local/bin/custom-commands/fzf/my-repos.sh'
+
+function list-custom-commands() {
+    myCustomCommands=("my-repos")
+
+    selected=$(printf "%s\n" "${myCustomCommands[@]}" | fzf --tmux)
+
+    eval "$selected"
+}
+
 # Bash completion
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
@@ -196,6 +207,7 @@ bind -r '"\C-g"'
 bind '"\C-g": "tmux-reattach.sh\n"'
 bind '"\C-f": "tmux-sessionizer.sh\n"'
 
+
 # -- Yazi
 export EDITOR="nvim"
 bind '"\C-e": "y\n"'
@@ -207,4 +219,3 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-. "/home/fjedor/.deno/env"
