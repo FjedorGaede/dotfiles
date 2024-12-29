@@ -8,11 +8,11 @@ switch_to() {
     fi
 }
 
-get_session_names() {
-    tmux ls | awk '{print $1}' | cut -d: -f1
-}
 
-selected_session=$(get_session_names | fzf --tmux)
+
+# We are able to kill a session with pressing ctrl-d
+selected_session=$(tmux ls | awk '{print $1}' | cut -d: -f1 | 
+    fzf --tmux --bind 'ctrl-d:execute(tmux kill-session -t {})+reload(tmux ls | awk "{print $1}" | cut -d: -f1)')
 
 if [[ -z $selected_session ]]; then
     exit 0
