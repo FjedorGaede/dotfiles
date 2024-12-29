@@ -5,17 +5,23 @@ import { City, Coordinates } from "../../../services/geo-location";
 import { bind } from "/usr/share/astal/gjs";
 
 const WeatherIcon = () => (
-  <label
-    className="weather-icon"
-    label={CurrentWeather((currentWeather) => currentWeather?.icon || "")}
-  />
+  <box valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
+    <label
+      valign={Gtk.Align.CENTER}
+      halign={Gtk.Align.CENTER}
+      className="weather-icon"
+      label={CurrentWeather((currentWeather) => currentWeather?.icon || "")}
+    />
+  </box>
 );
 
 const Temperature = () => (
-  <label
-    className="temperature"
-    label={CurrentWeather((weather) => `${weather?.temperature}°C`)}
-  />
+  <box valign={Gtk.Align.CENTER} halign={Gtk.Align.CENTER}>
+    <label
+      className="temperature"
+      label={CurrentWeather((weather) => `${weather?.temperature}°C`)}
+    />
+  </box>
 );
 
 const Position = () => (
@@ -40,7 +46,12 @@ const LastRefresh = () => (
 export const Weather = () => {
   return (
     <Panel>
-      <box className="weather" vertical={true} halign={Gtk.Align.CENTER}>
+      <box
+        className="weather"
+        vertical={true}
+        valign={Gtk.Align.CENTER}
+        halign={Gtk.Align.CENTER}
+      >
         <WeatherIcon />
         <Temperature />
         <Position />

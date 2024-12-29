@@ -148,12 +148,14 @@ window.Bar {
     }
 
     .weather-icon {
-      font-size: 6rem;
-      margin: -1.7rem 0;
+      font-size: 4rem;
+      margin-left: -1.1rem;
+      margin-bottom: -0.8rem;
     }
 
     .temperature {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      font-weight: bold
     }
 
     .last-refresh {
