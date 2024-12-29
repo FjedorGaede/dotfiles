@@ -137,14 +137,6 @@ alias python='/usr/bin/python3.11'
 
 export NODE_OPTIONS=--max-old-space-size=4096
 
-# XMOD Key maps
-xmodmap ~/.Xmodmap
-. "$HOME/.cargo/env"
-
-# xinput commands
-# Set deceleration of the stylus (id: 18) to 0.9
-xinput set-prop 18 300 0.9
-
 # Enable starship.rc
 eval "$(starship init bash)"
 
@@ -152,5 +144,67 @@ eval "$(starship init bash)"
 eval "$(zoxide init --cmd j bash)"
 
 # FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
 
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    local pid 
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi  
+
+    if [ "x$pid" != "x" ]
+    then
+        echo $pid | xargs kill -${1:-9}
+    fi  
+}
+
+# c - browse chrome history
+browse_chrome() {
+  local cols sep google_history open
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  if [ "$(uname)" = "Darwin" ]; then
+    google_history="$HOME/Library/Application Support/Google/Chrome/Default/History"
+    open=open
+  else
+    google_history="$HOME/.config/google-chrome/Default/History"
+    open=xdg-open
+  fi
+  cp -f "$google_history" /tmp/h
+  sqlite3 -separator $sep /tmp/h \
+    "select substr(title, 1, $cols), url
+     from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs $open > /dev/null 2> /dev/null
+}
+
+# Bash completion
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin/tmux-sessionizer
+export PATH=$PATH:$HOME/.local/bin/tmux-reattach
+
+# Tmux sessionizer 
+bind -r '"\C-g"'
+bind '"\C-g": "tmux-reattach.sh\n"'
+bind '"\C-f": "tmux-sessionizer.sh\n"'
+
+# -- Yazi
+export EDITOR="nvim"
+bind '"\C-e": "y\n"'
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+. "/home/fjedor/.deno/env"
