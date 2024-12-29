@@ -26,7 +26,7 @@ hydrate() {
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/ ~/.dotfiles/.local ~/.dotfiles/.local/bin ~/.dotfiles ~/.dotfiles/.config ~/programming ~/programming/advent-of-code ~/programming/edyoucated ~/personal ~/work ~/projects ~/.config -maxdepth 1 -mindepth 1 -type d 2> /dev/null | fzf)
+    selected=$(find ~/ ~/.dotfiles/.local ~/.dotfiles/.local/bin ~/.dotfiles ~/.dotfiles/.config ~/programming ~/programming/advent-of-code ~/programming/edyoucated ~/personal ~/work ~/projects ~/.config -maxdepth 1 -mindepth 1 -type d 2> /dev/null | fzf --tmux)
 fi
 
 if [[ -z $selected ]]; then
