@@ -1,0 +1,41 @@
+// -- DSH COLORS -- //
+$darker_blue: #0d222a;
+$dark_blue: #124f5d;
+$blue: #66aede;
+$light_blue: #8dcfdd;
+
+$dark_red: #7d301e;
+$red: #c14726;
+
+$orange: #fb875a;
+$light_orange: #f9dfc6;
+
+$dark_purple: #56234f;
+$light_purple: #dbb3dd;
+
+$dark_green: #3b4537;
+$light_green: #3b4537;
+
+$darkest_gray: #0a1b21;
+$darker_gray: #383333;
+$dark_gray: #636262;
+$gray: #979292;
+$light_gray: #ded9d9;
+
+// -- COLORS -- //
+$cc-bg: rgba($darkest_gray, 0.8);
+
+$noti-border-color: $darker_gray;
+$noti-bg: $dark_blue;
+$noti-bg-opaque: $dark_blue;
+$noti-bg-darker: $darker_blue;
+$noti-bg-hover: $blue;
+$noti-bg-hover-opaque: $blue;
+$noti-bg-focus: rgba(68, 68, 68, 0.6);
+$noti-close-bg: $dark_blue;
+$noti-close-bg-hover: $darker_blue;
+
+$text-color: rgb(255, 255, 255);
+$text-color-disabled: rgb(150, 150, 150);
+
+$bg-selected: $orange;

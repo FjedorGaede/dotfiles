@@ -4,3 +4,10 @@ padding=10
 icon-location=left
 default-timeout=8000
 
+max-history=50
+
+font=JetBrainsMono Nerd Font Mono
+
+[urgency=critical]
+background-color=#4287f5
+default-timeout=0

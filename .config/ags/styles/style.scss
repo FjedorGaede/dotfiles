@@ -1,198 +1,167 @@
 @import './mixins/unset';
+@import './mixins/invisible';
+@import './colors.scss';
 
-$darker_blue: #0d222a;
-$dark_blue: #124f5d;
-$blue: #66aede;
-$light_blue: #8dcfdd;
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$theme_fg_color: "@theme_fg_color";
+$theme_bg_color: "@theme_bg_color";
 
-$dark_red: #7d301e;
-$red: #c14726;
-$orange: #fb875a;
-$light_orange: #f9dfc6;
+$panel-background: #2d3539;
 
-$dark_purple: #56234f;
-$light_purple: #dbb3dd;
-
-$dark_green: #3b4537;
-$light_green: #3b4537;
-
-$darkest_gray: #0a1b21;
-$darker_gray: #383333;
-$dark_gray: #636262;
-$gray: #979292;
-$light_gray: #ded9d9;
-
-$border-radius: 0.4em;
-
-.bar {
-  background-color: $darkest_gray;
-}
-
-.dateWidget {
-  button {
-    background-color: $red;
-  }
-}
-
-window#control-settings {
-  >* {
-    margin: 5px 25px;
-  }
-
-  .control-settings {
-    @include unset;
-
-    background-color: $darkest_gray;
-    min-width: 400px;
-    padding: 16px;
-  }
-
-  .setting-sliders {
-    padding: 12px;
-    background-color: $darker_blue;
-    border-radius: $border-radius;
-
-    >*:not(:last-child) {
-      padding-bottom: 12px;
-    }
-  }
-}
-
-.icon-button {
-  @include unset;
-
-  margin-right: 12px;
-
-  image {
-    padding: 2px;
-  }
-
-  &:hover {
-    background-color: $orange;
-    border-radius: $border-radius;
-  }
-}
-
-.button-unset {
+button.button-unset {
   @include unset;
 }
 
-.panel-button {
-  @include unset;
+.invisible {
+  @include invisible;
+}
+
+window.Bar {
+  font-family: "JetBrainsMono NFP";
+
+  background: transparent;
+  color: #{$theme_bg_color};
   font-weight: bold;
 
-  >* {
-    padding: 2px 8px;
-    border-radius: $border-radius;
+  .panel {
+    background-color: $panel-background;
+    padding: .2rem .5rem;
+
+    min-height: 20px; // Just to have a more consistent looks
   }
 
-  image {
-    padding: 0 2px;
+  centerbox {
+    @include unset;
+
+    background: transparent;
+
+    box.bar-widget {
+
+      .rounded-right {
+        border-bottom-right-radius: 8px;
+      }
+
+      .rounded-left {
+        border-bottom-left-radius: 8px;
+      }
+    }
   }
 
-  &:hover {
-    >* {
-      // This is for aving some overay over the elements inside to give a little effect to highlight 
-      box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  .hints {
+    margin-left: -8px;
+    margin-right: -8px;
+
+    .hint {
+
+      &:not(:last-child) {
+        margin-right: -8px;
+      }
+
+      .battery {
+        &.critical {
+          color: $system-info-critical;
+        }
+
+        &.warning {
+          color: $system-info-orange;
+        }
+      }
+
+      .notifications {
+        color: $light_gray;
+      }
+    }
+  }
+
+  .workspaces {
+    .workspaces-box {
+      margin: 0 .3rem;
+
+      .workspace {
+        font-size: 12px;
+        margin: 0 .3rem;
+      }
     }
   }
 }
 
-.workspaces {
-  border-radius: $border-radius;
-  padding: 0 4px;
-  background-color: $dark_blue;
+.home-window {
+  $widget-small-width: 160px;
+  $widget-medium-width: 300px;
+  $gap: 8px;
 
-  image {
-    min-width: 12px;
-    padding: 0 2px;
-  }
-
-  .is-active {
-    color: $blue;
-  }
-
-  .is-urgent {
-    color: $red;
-  }
-
-  .has-content {
-    color: $light_gray;
-  }
-
-  .inactive {
-    color: $light_gray;
-    opacity: 0.4;
-  }
-}
-
-
-.controls {
-  background-color: $dark_blue;
-}
-
-.interactive-slider {
-  @include unset;
-
-  trough {
-    min-height: 0.8em;
-    border-radius: 0.8em;
-    border: 1px transparent;
-    background-color: $dark_gray;
-
-    highlight {
+  .panels-container {
+    .panel {
       @include unset;
+      border-radius: 8px;
 
-      background-color: $blue;
-      min-height: 0.6em;
-      border-radius: 0.8em;
-      border: 1px transparent;
-    }
-  }
-
-  slider {
-    @include unset;
-  }
-}
-
-.indicator {
-  font-weight: bold;
-
-  label {
-    margin-left: 8px;
-  }
-}
-
-.arrow-button {
-
-  &.active {
-    .button {
-      background-color: $dark_blue;
+      background-color: $panel-background;
       color: white;
+
+      padding: 4px 8px;
+
+    }
+
+    .panel-row {
+      >*:not(:last-child) {
+        margin-right: $gap;
+      }
+    }
+
+  }
+
+  .clock {
+    min-width: $widget-small-width;
+
+    .time {
+      margin-top: -6px; // We need some kind of fix for the font spacing issue
+      font-size: 38px;
+      font-weight: 800;
+    }
+
+    .day {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .date {
+      font-size: 16px;
+      font-weight: 400;
     }
   }
 
-  button {
-    @include unset;
-  }
+  // -- Weather Widget -- //
+  .weather {
+    min-width: $widget-small-width;
 
-  .button {
-    &.right {
-      border-top-right-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
+    .position {
+      font-size: .9rem;
+
+      .location-icon {
+        margin-right: .5rem;
+      }
+
+      .city {
+        font-size: 16px;
+        font-weight: 400;
+      }
     }
 
-    &.left {
-      border-top-left-radius: $border-radius;
-      border-bottom-left-radius: $border-radius;
+    .weather-icon {
+      font-size: 4rem;
+      margin-left: -1.1rem;
+      margin-bottom: -0.8rem;
     }
 
-    padding: 8px;
-    background-color: $darker_blue;
-    color: $gray;
+    .temperature {
+      font-size: 1.5rem;
+      font-weight: bold
+    }
 
-    &:hover {
-      opacity: 0.8;
+    .last-refresh {
+      font-size: .6rem;
+      color: $light_gray;
+      opacity: .7;
     }
   }
 }
