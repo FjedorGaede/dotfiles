@@ -20,6 +20,8 @@ return {
           },
         },
         defaults = {
+          file_ignore_patterns = { ".git/", ".github/", ".vscode/", "node_modules/" },
+          -- hidden = true, -- Why does this not work for find files?
           mappings = {
             i = {
               ["<C-j>"] = "move_selection_next",
@@ -33,9 +35,19 @@ return {
       require("telescope").load_extension("ui-select")
 
       -- Keymaps
+      -- Some extra args
+      local show_hidden_grep = { "--hiddenl", "--no-ignore" }
       vim.keymap.set("n", "<space>tr", require("telescope.builtin").resume, { desc = "[T]elescope [R]esume" })
-      vim.keymap.set("n", "<space>ff", require("telescope.builtin").find_files, { desc = "[F]ind [F]iles" })
-      vim.keymap.set("n", "<space>fs", require("telescope.builtin").live_grep, { desc = "[F]ind [S]trings" })
+      vim.keymap.set("n", "<space>ff", function()
+        return require("telescope.builtin").find_files({ hidden = true }) -- Has to set this to also find hidden files..
+      end, { desc = "[F]ind [F]iles" })
+      vim.keymap.set("n", "<space>fs", function()
+        return require("telescope.builtin").live_grep({
+          additional_args = function(args)
+            return vim.list_extend(args, show_hidden_grep)
+          end,
+        })
+      end, { desc = "[F]ind [S]trings" })
       vim.keymap.set("n", "<space>fr", require("telescope.builtin").oldfiles, { desc = "[F]ind [R]ecent Files" })
       vim.keymap.set("n", "<space>fo", require("telescope.builtin").buffers, { desc = "[F]ind [O]pen Files" })
       vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "[F]ind [H]elp" })

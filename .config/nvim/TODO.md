@@ -73,6 +73,7 @@
 - [x] mini operators -> sieht schon sehr cool aus. Er sagt in dem video oben, dass sowas wie `gr` sowieso auf einen leader key gehört. vllt hat er damit sogar recht, weil die braucht man ja eher selten im Gegensatz zu sowas vllt? -> irgendwann vllt mal
 - [x] auto session -> irgendwie nicht das was ich will
 - [ ] status line show the file type or attached lsps at least?
+- [ ] status line show percentage of file or show a scollbar on the right side?
 
 # Snippets
 - [ ] Have custom lua snip
