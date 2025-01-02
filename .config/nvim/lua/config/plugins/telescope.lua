@@ -7,6 +7,7 @@ return {
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
+      local actions = require("telescope.actions")
       require("telescope").setup({
         pickers = {
           find_files = {
@@ -21,11 +22,13 @@ return {
         },
         defaults = {
           file_ignore_patterns = { ".git/", ".github/", ".vscode/", "node_modules/" },
-          -- hidden = true, -- Why does this not work for find files?
+          hidden = true, -- Why does this not work for find files?
           mappings = {
             i = {
-              ["<C-j>"] = "move_selection_next",
-              ["<C-k>"] = "move_selection_previous",
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-l>"] = actions.cycle_history_next,
+              ["<C-h>"] = actions.cycle_history_prev,
             },
           },
         },
@@ -36,7 +39,7 @@ return {
 
       -- Keymaps
       -- Some extra args
-      local show_hidden_grep = { "--hiddenl", "--no-ignore" }
+      local show_hidden_grep = { "--hidden", "--no-ignore" }
       vim.keymap.set("n", "<space>tr", require("telescope.builtin").resume, { desc = "[T]elescope [R]esume" })
       vim.keymap.set("n", "<space>ff", function()
         return require("telescope.builtin").find_files({ hidden = true }) -- Has to set this to also find hidden files..
@@ -53,24 +56,14 @@ return {
       vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags, { desc = "[F]ind [H]elp" })
       vim.keymap.set("n", "<space>fk", require("telescope.builtin").keymaps, { desc = "[F]ind [K]eymaps" })
       vim.keymap.set("n", "<space>fc", require("telescope.builtin").commands, { desc = "[F]ind [C]ommands" }) -- Not that useful (?)
-      vim.keymap.set("n", "<space>en", function()
-        local opts = require("telescope.themes").get_ivy({
-          cwd = vim.fn.stdpath("config"),
-          layout_config = {
-            height = 0.8,
-          },
-        })
-        require("telescope.builtin").find_files(opts)
-      end, {
-        desc = "[E]dit [N]eovim Config",
-      })
-
-      vim.keymap.set("n", "<space>sc", function()
-        local opts = require("telescope.themes").get_ivy({})
-        require("telescope.builtin").find_files()
-      end, {
-        desc = "[E]dit [N]eovim Config",
-      })
+      vim.keymap.set("n", "<space>fw", require("telescope.builtin").grep_string, { desc = "[F]ind [W]ord" }) -- Not that useful (?)
+      vim.keymap.set("n", "<space>en", require("telescope.builtin").find_files, { desc = "[E]dit [N]eovim Config" })
+      vim.keymap.set(
+        "n",
+        "<space>fd",
+        require("telescope.builtin").lsp_document_symbols,
+        { desc = "[F]ind [D]ocument Symbols" }
+      )
 
       -- LSP Configurations TODO: Move into another directory? --
       vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Type [D]efinition" })
