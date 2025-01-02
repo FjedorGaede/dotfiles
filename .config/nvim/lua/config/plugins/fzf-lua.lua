@@ -1,4 +1,5 @@
 -- NOTE: The color is set by the global color scheme for FZF in the .bashrc
+
 return {
   {
     "ibhagwan/fzf-lua",
@@ -14,6 +15,8 @@ return {
       },
 
       defaults = {
+        file_icons = true, -- This might make it slower but I could not see this yet
+        color_icons = true, -- This might make it slower but I could not see this yet
         formatter = "path.filename_first",
         keymap = {
           fzf = {
@@ -22,11 +25,46 @@ return {
           },
         },
       },
+      ui_select = function(fzf_opts, items)
+        return vim.tbl_deep_extend("force", fzf_opts, {
+          prompt = " ",
+          winopts = {
+            title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
+            title_pos = "center",
+          },
+        }, fzf_opts.kind == "codeaction" and {
+          winopts = {
+            layout = "vertical",
+            -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
+            height = math.floor(math.min(vim.o.lines * 0.8 - 16, #items + 2) + 0.5) + 16,
+            width = 0.5,
+            preview = not vim.tbl_isempty(LazyVim.lsp.get_clients({ bufnr = 0, name = "vtsls" })) and {
+              layout = "vertical",
+              vertical = "down:15,border-top",
+              hidden = "hidden",
+            } or {
+              layout = "vertical",
+              vertical = "down:15,border-top",
+            },
+          },
+        } or {
+          winopts = {
+            width = 0.5,
+            -- height is number of items, with a max of 80% screen height
+            height = math.floor(math.min(vim.o.lines * 0.8, #items + 2) + 0.5),
+          },
+        })
+      end,
 
       files = {
         prompt = "Files> ",
         cwd_prompt = false,
         actions = false, -- Disable default action. If I want to have custom actions I need to add them here.
+      },
+      lsp = {
+        code_actions = {
+          previewer = vim.fn.executable("delta") == 1 and "codeaction_native" or nil,
+        },
       },
       previewers = {
         builtin = {
@@ -39,7 +77,11 @@ return {
       },
     },
     config = function(_, opts)
-      require("fzf-lua").setup(opts)
+      local fzf = require("fzf-lua")
+      fzf.setup(opts)
+
+      -- This makes fzf be the ui select for neovim
+      fzf.register_ui_select()
 
       local set = vim.keymap.set
 
@@ -75,7 +117,10 @@ return {
         { desc = "Goto T[y]pe Definition" }
       )
       set("n", "R", vim.lsp.buf.rename, { desc = "[R]ename variable" }) -- NOTE Would be cooler if it would work in line
-      set("n", "<space>ca", require("fzf-lua").lsp_code_actions, { desc = "[C]ode [A]ctions" })
+      set("n", "<space>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
+      -- set("n", "<space>ca", function()
+      --   return require("fzf-lua").lsp_code_actions({ winopts = { relative = "cursor", height = 0.8, width = 0.2 } })
+      -- end, { desc = "[C]ode [A]ctions" })
     end,
   },
 }
