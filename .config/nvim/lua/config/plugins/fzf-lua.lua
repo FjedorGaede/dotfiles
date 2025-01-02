@@ -13,9 +13,29 @@ return {
         treesitter = false, -- Default: false, What does this do?
       },
 
+      defaults = {
+        formatter = "path.filename_first",
+        keymap = {
+          fzf = {
+            ["ctrl-u"] = "half-page-up",
+            ["ctrl-d"] = "half-page-down",
+          },
+        },
+      },
+
       files = {
         prompt = "Files> ",
         cwd_prompt = false,
+        actions = false, -- Disable default action. If I want to have custom actions I need to add them here.
+      },
+      previewers = {
+        builtin = {
+          extensions = {
+            ["png"] = { "viu", "-b" },
+            ["jpg"] = { "ueberzug" },
+          },
+          ueberzug_scaler = "cover",
+        },
       },
     },
     config = function(_, opts)
