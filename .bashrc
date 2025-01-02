@@ -135,6 +135,8 @@ alias jj='j -'
 
 alias python='/usr/bin/python3.11'
 
+alias connect_homeassistant='ssh root@homeassistant -p 22'
+
 export NODE_OPTIONS=--max-old-space-size=4096
 
 # Enable starship.rc
