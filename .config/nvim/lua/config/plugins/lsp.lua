@@ -17,6 +17,7 @@ local SERVERS_TO_INSTALL = {
 
   angularls = {},
   cssmodules_ls = {},
+  cssls = {},
 
   ["html-lsp"] = {},
 
