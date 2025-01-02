@@ -1,3 +1,4 @@
+-- NOTE: The color is set by the global color scheme for FZF in the .bashrc
 return {
   {
     "ibhagwan/fzf-lua",
@@ -5,7 +6,18 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     -- or if using mini.icons/mini.nvim
     -- dependencies = { "echasnovski/mini.icons" },
-    opts = {},
+    opts = {
+      winopts = {
+        height = 0.95,
+        width = 0.95,
+        treesitter = false, -- Default: false, What does this do?
+      },
+
+      files = {
+        prompt = "Files> ",
+        cwd_prompt = false,
+      },
+    },
     config = function(_, opts)
       require("fzf-lua").setup(opts)
 
