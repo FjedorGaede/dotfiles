@@ -12,6 +12,11 @@ local function get_short_file_info()
   end
   local icon = devicons.get_icon(vim.fn.expand("%:t"), nil, { default = true })
 
+  if filetype == "fzf" then -- fzf gets special treatment here
+    filetype = "FZF"
+    icon = ""
+  end
+
   if filetype == "snacks_terminal" then
     local file_name = vim.fn.expand("%:t")
 
@@ -48,7 +53,9 @@ return {
         for _, client in pairs(lsp_clients) do
           table.insert(lsp_client_names, client.name)
         end
-        local lsp_client_name = "(" .. table.concat(lsp_client_names, ", ") .. ")"
+        local lsp_client_name = "["
+          .. (#lsp_client_names > 0 and table.concat(lsp_client_names, ", ") or "no lsps")
+          .. "]"
 
         local groups = {
           { hl = mode_hl, strings = { mode } },
