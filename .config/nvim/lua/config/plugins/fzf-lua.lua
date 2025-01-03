@@ -1,5 +1,4 @@
 -- NOTE: The color is set by the global color scheme for FZF in the .bashrc
-
 return {
   {
     "ibhagwan/fzf-lua",
@@ -96,6 +95,9 @@ return {
       set("n", "<leader>fh", require("fzf-lua").helptags, { desc = "[F]ind [H]elp" })
       set("n", "<leader>fk", require("fzf-lua").keymaps, { desc = "[F]ind [K]eymaps" })
       set("n", "<leader>fc", require("fzf-lua").commands, { desc = "[F]ind [C]ommands" })
+      set("n", "<leader>fn", function()
+        require("fzf-lua").files({ cwd = "~/.dotfiles/.config/nvim" })
+      end, { desc = "[F]ind [N]eovim Configs" })
 
       -- LSP Configuration -- TODO: Move somewhere else?
       set(
