@@ -55,6 +55,19 @@ local function lsps_for_filetypes()
   return "[" .. (#lsp_client_names > 0 and table.concat(lsp_client_names, ", ") or "no lsps") .. "]"
 end
 
+local function get_git(trunc_width)
+  local isTruncated = MiniStatusline.is_truncated(trunc_width)
+  local git = " "
+
+  if isTruncated then
+    return git
+  end
+
+  local long_git = git .. (vim.b and vim.b.minigit_summary and vim.b.minigit_summary.head_name or "")
+
+  return long_git
+end
+
 return {
   "echasnovski/mini.statusline",
   opts = {
@@ -62,7 +75,7 @@ return {
     content = {
       active = function()
         local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
-        local git = " " .. (vim.b and vim.b.minigit_summary and vim.b.minigit_summary.head_name or "")
+        local git = get_git(120)
         local diff = MiniStatusline.section_diff({ trunc_width = 75 })
         local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
         local filename = MiniStatusline.section_filename({ trunc_width = 140 })
@@ -75,6 +88,8 @@ return {
         -- local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
         local lsp_client_name = lsps_for_filetypes()
 
+        local position = "%l / %L"
+
         local groups = {
           { hl = mode_hl, strings = { mode } },
           { hl = "MiniStatuslineDevinfo", strings = { git, diff } },
@@ -82,6 +97,7 @@ return {
           "%<", -- Mark general truncate point
           { hl = "MiniStatuslineFilename", strings = { filename } },
           "%=", -- End left alignment
+          { hl = "MiniStatuslineFilename", strings = { position } },
           { hl = "MiniStatuslineFileinfo", strings = { fileinfo, lsp_client_name } },
         }
 
