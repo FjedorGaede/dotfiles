@@ -32,15 +32,52 @@ return {
         -- jestConfigFile = function(file) -- find the next jest config file below the test file
         --   return find_files({ "jest.config.js", "jest.config.ts" }, file)[1]
         -- end,
-        env = { CI = true },
+        env = { CI = true, FORCE_COLOR = "1" },
       })
 
+      local adapters = {
+        jest,
+      }
+
+      local neotest = require("neotest")
+
       ---@diagnostic disable-next-line: missing-fields
-      require("neotest").setup({
-        adapters = {
-          jest,
-        },
+      neotest.setup({
+        adapters = adapters,
       })
+
+      -- SET KEYMAPS --
+      local set = function(keymap, command, desc)
+        vim.keymap.set("n", keymap, command, { desc = desc })
+      end
+
+      set("<leader>tT", function()
+        require("neotest").run.run(vim.uv.cwd())
+      end, "Run Nearest Test")
+      set("<leader>tt", function()
+        require("neotest").run.run(vim.fn.expand("%"))
+      end, "Run File (Neotest)")
+      set("<leader>tr", function()
+        require("neotest").run.run()
+      end, "Run Nearest (Neotest)")
+      set("<leader>tl", function()
+        require("neotest").run.run_last()
+      end, "Run Last (Neotest)")
+      set("<leader>ts", function()
+        require("neotest").summary.toggle()
+      end, "Toggle Summary (Neotest)")
+      set("<leader>to", function()
+        require("neotest").output.open({ enter = true, auto_close = true })
+      end, "Show Output (Neotest)")
+      set("<leader>tO", function()
+        require("neotest").output_panel.toggle()
+      end, "Toggle Output Panel (Neotest)")
+      set("<leader>tS", function()
+        require("neotest").run.stop()
+      end, "Stop (Neotest)")
+      set("<leader>tw", function()
+        require("neotest").watch.toggle(vim.fn.expand("%"))
+      end, "Toggle Watch (Neotest)")
     end,
   },
 }

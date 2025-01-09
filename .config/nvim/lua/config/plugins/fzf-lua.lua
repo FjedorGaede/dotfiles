@@ -86,7 +86,7 @@ return {
 
       -- Find Files Keymaps --
       set("n", "<leader>ff", require("fzf-lua").files, { desc = "[F]ind [F]iles" })
-      set("n", "<leader>tr", require("fzf-lua").resume, { desc = "[R]esume last search" })
+      set("n", "<leader>ls", require("fzf-lua").resume, { desc = "Resume [L]ast [S]earch" })
       set("n", "<leader>fo", require("fzf-lua").buffers, { desc = "[F]ind [O]pen Files" })
       set("n", "<leader>fr", require("fzf-lua").oldfiles, { desc = "[F]ind [R]ecent Files" })
       set("n", "<leader>fs", require("fzf-lua").live_grep_glob, { desc = "[F]ind [S]tring in Files" }) -- Note: with -- separator
