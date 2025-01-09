@@ -28,6 +28,9 @@
 - [ ] Nothing to do notify even though it shows me the stuff. When pressing K
 - [ ] How can i make a telescope picker `definition-or-references.nvim` for this?
 
+# FZF-Lua 
+- [ ] Grep not searching for git ignored files
+
 # Telsescope
 - [ ] Can i have custom actions?
 - [ ] How does it work with quickfix?
@@ -41,6 +44,9 @@
 
 - [ ] mark better that a file is unsaved
 
+# LSP
+- [ ] Graphql better integration? Go to references?
+- [ ] typescript does not import with type if only type is needed. 
 
 # Blink
 - [x] Blink.nvim -> do not have text as completion all the time? -> works pretty well I would assume except for the fucking color -> Actually it is possilbe to set the offset value for the `buffer` provider to some thing really negative to always push it to be latest
@@ -72,8 +78,8 @@
 - [x] mini files -> cool and intersting different approach
 - [x] mini operators -> sieht schon sehr cool aus. Er sagt in dem video oben, dass sowas wie `gr` sowieso auf einen leader key gehört. vllt hat er damit sogar recht, weil die braucht man ja eher selten im Gegensatz zu sowas vllt? -> irgendwann vllt mal
 - [x] auto session -> irgendwie nicht das was ich will
-- [ ] status line show the file type or attached lsps at least?
-- [ ] status line show percentage of file or show a scollbar on the right side?
+- [x] status line show the file type or attached lsps at least?
+- [ ] status line show percentage of file or show a scollbar on the right side? <- Yes please
 
 # Snippets
 - [ ] Have custom lua snip
