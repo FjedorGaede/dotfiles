@@ -17,19 +17,22 @@ return {
     },
     config = function(_, opts)
       local jest = require("neotest-jest")({
-        jestCommand = function(file) -- find the next jest config file below the test file
-          -- local root = find_root({ "package.json" }, file)
-          -- return "npm --prefix " .. root .. " exec jest " .. "--colors --run-test-by-path " .. file
-          return "npm exec jest " .. "--colors --run-test-by-path " .. file
-        end,
-        jestConfigFile = function(file) -- find the next jest config file below the test file
-          return find_files({ "jest.config.js", "jest.config.ts" }, file)[1]
-        end,
+        -- NOTE: This is all not needed. What? :D Ok maybe I did the same as the plugin does..
+        -- cwd = function(file)
+        --   -- NOTE: We set the cwd to be the root of the test not the project root.
+        --   local root = find_root({ "package.json" }, file)
+        --   return root
+        -- end,
+        -- jestCommand = function(file) -- find the next jest config file below the test file
+        --   -- NOTE: This could also work if the cwd has to be the root of the project for some reason.
+        --   -- local root = find_root({ "package.json" }, file)
+        --   -- return "npm --prefix " .. root .. " exec jest " .. "--colors --run-test-by-path " .. file
+        --   return "npm exec jest " .. "--colors --run-test-by-path " .. file
+        -- end,
+        -- jestConfigFile = function(file) -- find the next jest config file below the test file
+        --   return find_files({ "jest.config.js", "jest.config.ts" }, file)[1]
+        -- end,
         env = { CI = true },
-        cwd = function(file)
-          local root = find_root({ "package.json" }, file)
-          return root
-        end,
       })
 
       ---@diagnostic disable-next-line: missing-fields
