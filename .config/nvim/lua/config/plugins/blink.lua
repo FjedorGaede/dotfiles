@@ -40,6 +40,7 @@ return {
         jump = function(direction)
           require("luasnip").jump(direction)
         end,
+        preset = "luasnip",
       },
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -110,7 +111,7 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { "lsp", "luasnip", "path", "lazydev" },
+        default = { "lsp", "path", "snippets", "lazydev" },
         providers = {
           lsp = { fallbacks = { "lazydev" } },
           lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
