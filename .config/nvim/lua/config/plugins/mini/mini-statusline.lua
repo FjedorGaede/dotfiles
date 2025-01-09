@@ -12,6 +12,11 @@ local function get_short_file_info()
   end
   local icon = devicons.get_icon(vim.fn.expand("%:t"), nil, { default = true })
 
+  if filetype == "neotest-summary" then -- fzf gets special treatment here
+    filetype = "Neotest Summary"
+    icon = "󰙨"
+  end
+
   if filetype == "fzf" then -- fzf gets special treatment here
     filetype = "FZF"
     icon = ""
@@ -27,6 +32,27 @@ local function get_short_file_info()
   end
 
   return string.format("%s %s", icon, filetype)
+end
+
+local hide_lsps_for_filetypes = {
+  "neotest-summary",
+  "lazygit",
+  "fzf",
+}
+
+local function lsps_for_filetypes()
+  local filetype = vim.bo.filetype
+  if vim.tbl_contains(hide_lsps_for_filetypes, filetype) then
+    return ""
+  end
+
+  local lsp_clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
+  local lsp_client_names = {}
+  for _, client in pairs(lsp_clients) do
+    table.insert(lsp_client_names, client.name)
+  end
+
+  return "[" .. (#lsp_client_names > 0 and table.concat(lsp_client_names, ", ") or "no lsps") .. "]"
 end
 
 return {
@@ -47,15 +73,7 @@ return {
         local reg = vim.fn.reg_recording()
         local macro = "@" .. reg
         -- local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
-
-        local lsp_clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
-        local lsp_client_names = {}
-        for _, client in pairs(lsp_clients) do
-          table.insert(lsp_client_names, client.name)
-        end
-        local lsp_client_name = "["
-          .. (#lsp_client_names > 0 and table.concat(lsp_client_names, ", ") or "no lsps")
-          .. "]"
+        local lsp_client_name = lsps_for_filetypes()
 
         local groups = {
           { hl = mode_hl, strings = { mode } },
