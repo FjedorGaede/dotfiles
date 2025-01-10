@@ -56,7 +56,10 @@
 - [ ] Blink: Integrate lua snip and friendly snippets?
 
 # unit tests
-- [ ] How to run unit tests?
+- [x] How to run unit tests?
+- [ ] other icons? bigger checkmark
+- [ ] Sometimes a random test summary pops up that has now styling. What is this?
+- [ ] how can I leave the `to` thingy?
 
 # formatting
 - [ ] Backend: Why did it mess up the indentation?
