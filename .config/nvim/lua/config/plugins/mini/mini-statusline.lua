@@ -1,3 +1,34 @@
+local function get_modified_indicator()
+  if vim.bo.modified then
+    return "[+]"
+  end
+end
+
+-- Customizaion of build in MiniStatusLine.section_filename-
+---@param args __statusline_args
+---
+---@return __statusline_section
+local section_filename = function(args)
+  -- In terminal always use plain name
+  if vim.bo.buftype == "terminal" then
+    return "%t"
+  end
+  local format = ""
+  if MiniStatusline.is_truncated(args.trunc_width) then
+    -- Use relative path if truncated
+    format = "%f"
+  else
+    -- Use fullpath if not truncated
+    format = "%F"
+  end
+
+  if args.show_modified then
+    format = format .. "%m"
+  end
+
+  return format .. "%r"
+end
+
 local function get_short_file_info()
   local filetype = vim.bo.filetype
 
@@ -78,7 +109,8 @@ return {
         local git = get_git(120)
         local diff = MiniStatusline.section_diff({ trunc_width = 75 })
         local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-        local filename = MiniStatusline.section_filename({ trunc_width = 140 })
+        local filename = section_filename({ trunc_width = 140 })
+        local modified_indicator = get_modified_indicator()
         -- local fileinfo_long = MiniStatusline.section_fileinfo({ trunc_width = 140 })
         local fileinfo = get_short_file_info()
         -- local location = MiniStatusline.section_location({ trunc_width = 75 })
@@ -94,6 +126,7 @@ return {
           { hl = mode_hl, strings = { mode } },
           { hl = "MiniStatuslineDevinfo", strings = { git, diff } },
           { hl = "MiniStatuslineDiagnostics", strings = { diagnostics } },
+          { hl = "MiniStatuslineModifiedIndicator", strings = { modified_indicator } },
           "%<", -- Mark general truncate point
           { hl = "MiniStatuslineFilename", strings = { filename } },
           "%=", -- End left alignment
