@@ -1,8 +1,12 @@
 local colors = require("dracula.palette")
-local satisfiyingBlue = "#4287f5"
+local satisfiyingBlue = "#4287F5"
+local customCommentColor = "#7B8EC9"
 
 local borderBG = colors.bg
 local borderFG = colors.bright_blue
+
+-- Code
+vim.api.nvim_set_hl(0, "Comment", { fg = customCommentColor })
 
 -- Color Panel
 vim.api.nvim_set_hl(0, "WinSeparator", { fg = colors.purple, bold = true })
