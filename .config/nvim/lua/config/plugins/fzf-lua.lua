@@ -119,7 +119,7 @@ return {
         { desc = "Goto T[y]pe Definition" }
       )
       set("n", "R", vim.lsp.buf.rename, { desc = "[R]ename variable" }) -- NOTE Would be cooler if it would work in line
-      set("n", "<space>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
+      set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ctions" })
       -- set("n", "<space>ca", function()
       --   return require("fzf-lua").lsp_code_actions({ winopts = { relative = "cursor", height = 0.8, width = 0.2 } })
       -- end, { desc = "[C]ode [A]ctions" })
