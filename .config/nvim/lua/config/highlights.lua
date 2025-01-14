@@ -10,6 +10,11 @@ vim.api.nvim_set_hl(0, "WinSeparator", { fg = colors.purple, bold = true })
 -- Color the Float Windows
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = colors.bg, fg = colors.fg })
 
+vim.api.nvim_set_hl(0, "MiniHipatternsFixme", { bg = colors.bright_red, fg = colors.bg, bold = true }) -- FIXME
+vim.api.nvim_set_hl(0, "MiniHipatternsHack", { bg = colors.orange, fg = colors.bg, bold = true }) -- HACK
+vim.api.nvim_set_hl(0, "MiniHipatternsTodo", { bg = colors.pink, fg = colors.bg, bold = true }) -- TODO
+vim.api.nvim_set_hl(0, "MiniHipatternsNote", { bg = colors.bright_blue, fg = colors.bg, bold = true }) -- NOTE
+
 -- Git Signs
 vim.api.nvim_set_hl(0, "GitSignsAdd", { bg = colors.bg, fg = colors.green })
 vim.api.nvim_set_hl(0, "GitSignsDelete", { bg = colors.bg, fg = colors.red })
