@@ -45,7 +45,7 @@
 - [ ] mark better that a file is unsaved
 
 # LSP
-- [ ] Graphql better integration? Go to references?
+- [ ] Graphql better integration? Go to references? Why is not working? Works in webstorm pretty good
 - [ ] typescript does not import with type if only type is needed. 
 
 # Blink
@@ -74,6 +74,7 @@
 - [x] Git Blame -> test the git blame plugin that just does that -> echt cool
 - [x] Git history and stuff. -> I think lazygit is good enough for this 
 - [x] which one is better? mini.git or fugitive? What do i need what do i want? -> Actually, nothing is really interesting. Mini.git provides info for MiniStatusline and Fugitive is only interesting for the line blame that I can better reproduce with the dedicated nvim plugin. Rest goes via lazygit.
+- [ ] How to make check out changes on a directory?
 
 # mini 
 - [x] Status line of mini could use a bit of love? Especially the name of the file is super hard to find i think.
@@ -82,7 +83,8 @@
 - [x] mini operators -> sieht schon sehr cool aus. Er sagt in dem video oben, dass sowas wie `gr` sowieso auf einen leader key gehört. vllt hat er damit sogar recht, weil die braucht man ja eher selten im Gegensatz zu sowas vllt? -> irgendwann vllt mal
 - [x] auto session -> irgendwie nicht das was ich will
 - [x] status line show the file type or attached lsps at least?
-- [ ] status line show percentage of file or show a scollbar on the right side? <- Yes please
+- [x] status line show percentage of file or show a scollbar on the right side? <- Yes please
+- [ ] Show only root directory not full path
 
 # Snippets
 - [ ] Have custom lua snip
