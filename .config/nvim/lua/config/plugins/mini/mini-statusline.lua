@@ -4,6 +4,16 @@ local function get_modified_indicator()
   end
 end
 
+local function todo()
+  local doing = require("doing")
+  local status = doing.status()
+  local current_todo = status:match("^(.-)%+")
+  if current_todo == nil then
+    current_todo = status
+  end
+  return current_todo
+end
+
 -- Customizaion of build in MiniStatusLine.section_filename-
 ---@param args __statusline_args
 ---
@@ -13,14 +23,8 @@ local section_filename = function(args)
   if vim.bo.buftype == "terminal" then
     return "%t"
   end
-  local format = ""
-  if MiniStatusline.is_truncated(args.trunc_width) then
-    -- Use relative path if truncated
-    format = "%f"
-  else
-    -- Use fullpath if not truncated
-    format = "%F"
-  end
+  -- Always show relative path
+  local format = "%f"
 
   if args.show_modified then
     format = format .. "%m"
@@ -130,6 +134,7 @@ return {
           "%<", -- Mark general truncate point
           { hl = "MiniStatuslineFilename", strings = { filename } },
           "%=", -- End left alignment
+          -- { hl = "MiniStatuslineFilename", strings = { todo() } }, -- This is too much I think
           { hl = "MiniStatuslineFilename", strings = { position } },
           { hl = "MiniStatuslineFileinfo", strings = { fileinfo, lsp_client_name } },
         }
