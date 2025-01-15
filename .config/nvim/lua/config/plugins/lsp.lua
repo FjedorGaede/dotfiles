@@ -15,6 +15,17 @@ local SERVERS_TO_INSTALL = {
 
   vtsls = {
     settings = {
+      complete_function_calls = true,
+      vtsls = {
+        enableMoveToFileCodeAction = true,
+        autoUseWorkspaceTsdk = true,
+        experimental = {
+          maxInlayHintLength = 30,
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
+        },
+      },
       typescript = {
         inlayHints = {
           parameterNames = { enabled = "literals" },
