@@ -13,7 +13,20 @@ local SERVERS_TO_INSTALL = {
     },
   },
 
-  vtsls = {},
+  vtsls = {
+    settings = {
+      typescript = {
+        inlayHints = {
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+      },
+    },
+  },
 
   angularls = {},
   cssmodules_ls = {},
@@ -69,6 +82,9 @@ function GetEnsureInstalled()
 
   return tools
 end
+
+-- INLAY HINTS ENABLE --
+vim.lsp.inlay_hint.enable(true)
 
 -- --- LSP PLUGINS CONFIGURATION --- --
 return {
