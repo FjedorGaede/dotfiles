@@ -47,6 +47,10 @@
 # LSP
 - [ ] Graphql better integration? Go to references? Why is not working? Works in webstorm pretty good
 - [ ] typescript does not import with type if only type is needed. 
+- [ ] typescript: why does it not show the inlay types?
+- [ ] typescript: why does it not show that a function is unused?
+- [ ] typescript: why does searching for references take so long? can it not check for that already in the background?
+
 
 # Blink
 - [x] Blink.nvim -> do not have text as completion all the time? -> works pretty well I would assume except for the fucking color -> Actually it is possilbe to set the offset value for the `buffer` provider to some thing really negative to always push it to be latest
@@ -84,7 +88,8 @@
 - [x] auto session -> irgendwie nicht das was ich will
 - [x] status line show the file type or attached lsps at least?
 - [x] status line show percentage of file or show a scollbar on the right side? <- Yes please
-- [ ] Show only root directory not full path
+- [x] Show only root directory not full path
+- [ ] Mini.ai should be bale to jump directly to a function name or class definition name?
 
 # Snippets
 - [ ] Have custom lua snip
