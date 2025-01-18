@@ -127,14 +127,14 @@ return {
       function()
         Snacks.picker.git_files()
       end,
-      desc = "Find Git Files",
+      desc = "[F]ind [G]it Files",
     },
     {
       "<leader>fr",
       function()
         Snacks.picker.recent()
       end,
-      desc = "Recent",
+      desc = "[F]ind [R]ecent",
     },
     -- git
     {
@@ -142,14 +142,14 @@ return {
       function()
         Snacks.picker.git_log()
       end,
-      desc = "Git Log",
+      desc = "[G]it Log",
     },
     {
       "<leader>gs",
       function()
         Snacks.picker.git_status()
       end,
-      desc = "Git Status",
+      desc = "[G]it [S]tatus",
     },
     -- Grep
     {
@@ -225,10 +225,26 @@ return {
       desc = "Help Pages",
     },
     {
+      "<leader>fL",
+      function()
+        local lazypath = vim.fn.stdpath("data") .. "/lazy"
+        ---@diagnostic disable-next-line: missing-fields
+        Snacks.picker.files({ cwd = lazypath })
+      end,
+      desc = "[F]ind [L]azy Packages",
+    },
+
+    {
       "<leader>fH",
       function()
-        -- Snacks.picker.highlights({ actions = { Snacks.picker.actions.copy } })
-        Snacks.picker.highlights()
+        Snacks.picker.highlights({
+          confirm = function(picker, item)
+            -- Put the first group name it finds into the defautl register
+            local groupName = item.text:match('group%s*=%s*"([^"]+)"')
+            vim.fn.setreg("+", groupName)
+            picker:close()
+          end,
+        })
       end,
       desc = "Highlights",
     },

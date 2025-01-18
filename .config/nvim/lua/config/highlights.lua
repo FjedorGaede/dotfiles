@@ -1,5 +1,6 @@
 local colors = require("dracula.palette")
 local satisfiyingBlue = "#4287F5"
+local satisfiyingPink = "#FC1E9D"
 local customCommentColor = "#7B8EC9"
 
 local borderBG = colors.bg
@@ -27,10 +28,17 @@ vim.api.nvim_set_hl(0, "GitSignsAddPreview", { bg = colors.bg, fg = colors.green
 vim.api.nvim_set_hl(0, "GitSignsDeletePreview", { bg = colors.selection, fg = colors.red })
 vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { fg = colors.white })
 
--- Snacks
+-- Snacks --
 vim.api.nvim_set_hl(0, "SnacksIndentChunk", { fg = "#53576D" })
 vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = "#53576D" })
-vim.api.nvim_set_hl(0, "SnacksZenIcon", { fg = "#FF79C6" })
+vim.api.nvim_set_hl(0, "SnacksZenIcon", { fg = satisfiyingPink })
+
+-- Snacks.picker --
+vim.api.nvim_set_hl(0, "SnacksPickerDir", { fg = customCommentColor })
+vim.api.nvim_set_hl(0, "SnacksPickerMatch", {
+  bg = satisfiyingPink,
+  fg = colors.bright_white,
+})
 
 -- Flash
 vim.api.nvim_set_hl(0, "FlashMatch", { fg = colors.black, bg = colors.purple, bold = true })

@@ -10,7 +10,7 @@ return {
     dependencies = {
       "smjonas/inc-rename.nvim",
     },
-    enabled = false, -- Do I really want this anymore?
+    enabled = true, -- Do I really want this anymore?
     opts = {
       cmdline = {
         -- view = "cmdline",
@@ -31,6 +31,9 @@ return {
         progress = {
           enabled = false, -- We do this via snacks notifications
         },
+      },
+      messages = {
+        enabled = false,
       },
       -- you can enable a preset for easier configuration
       presets = {
