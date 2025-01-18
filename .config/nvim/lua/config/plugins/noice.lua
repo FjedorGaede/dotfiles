@@ -10,7 +10,7 @@ return {
     dependencies = {
       "smjonas/inc-rename.nvim",
     },
-    enabled = true,
+    enabled = false, -- Do I really want this anymore?
     opts = {
       cmdline = {
         -- view = "cmdline",

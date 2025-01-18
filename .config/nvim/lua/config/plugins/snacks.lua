@@ -61,6 +61,9 @@ return {
       enabled = true,
       timeout = 3000,
     },
+    notify = {
+      enabled = true,
+    },
     quickfile = {
       enabled = true,
     },
@@ -82,9 +85,22 @@ return {
         text = " Fullscreen",
       },
     },
-    picker = {},
+    picker = {
+      formatters = {
+        file = {
+          filename_first = true, -- display filename before the file path
+        },
+      },
+    },
   },
   keys = {
+    {
+      "<leader>n",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Notification History",
+    },
     {
       "<leader>fb",
       function()
@@ -195,84 +211,85 @@ return {
       desc = "Commands",
     },
     {
-      "<leader>sd",
+      "<leader>fd",
       function()
         Snacks.picker.diagnostics()
       end,
       desc = "Diagnostics",
     },
     {
-      "<leader>sh",
+      "<leader>fh",
       function()
         Snacks.picker.help()
       end,
       desc = "Help Pages",
     },
     {
-      "<leader>sH",
+      "<leader>fH",
       function()
+        -- Snacks.picker.highlights({ actions = { Snacks.picker.actions.copy } })
         Snacks.picker.highlights()
       end,
       desc = "Highlights",
     },
     {
-      "<leader>sj",
+      "<leader>fj",
       function()
         Snacks.picker.jumps()
       end,
       desc = "Jumps",
     },
     {
-      "<leader>sk",
+      "<leader>fk",
       function()
         Snacks.picker.keymaps()
       end,
       desc = "Keymaps",
     },
     {
-      "<leader>sl",
+      "<leader>fl",
       function()
         Snacks.picker.loclist()
       end,
       desc = "Location List",
     },
     {
-      "<leader>sM",
+      "<leader>fM",
       function()
         Snacks.picker.man()
       end,
       desc = "Man Pages",
     },
     {
-      "<leader>sm",
+      "<leader>fm",
       function()
         Snacks.picker.marks()
       end,
       desc = "Marks",
     },
     {
-      "<leader>sR",
+      "<leader>fR",
       function()
         Snacks.picker.resume()
       end,
       desc = "Resume",
     },
     {
-      "<leader>sq",
+      "<leader>fq",
       function()
         Snacks.picker.qflist()
       end,
       desc = "Quickfix List",
     },
     {
-      "<leader>uC",
+      "<leader>fC",
       function()
         Snacks.picker.colorschemes()
       end,
       desc = "Colorschemes",
     },
     {
-      "<leader>qp",
+      "<leader>fp",
       function()
         Snacks.picker.projects()
       end,
@@ -307,6 +324,13 @@ return {
         Snacks.picker.lsp_type_definitions()
       end,
       desc = "Goto T[y]pe Definition",
+    },
+    {
+      "<leader>ca",
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      desc = "Code Action",
     },
     {
       "<leader>ss",
