@@ -99,3 +99,6 @@
 - [x] Treesitter for angular inline tempalte not working? -> Doch funktioniert bei mir jetzt
 - [x] Angular LSP hat für VSCode noch keinen support für Signals um die anders zu kollorieren... Was eine dumme Scheiße...
 
+test
+
+hallo

@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.files",
+  enabled = false,
   config = function()
     -- Do I really need this? or is it only for the status bar?
     local mini_files = require("mini.files")
