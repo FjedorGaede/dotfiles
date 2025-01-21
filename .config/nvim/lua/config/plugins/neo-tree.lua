@@ -55,7 +55,7 @@ return {
           "filesystem",
           "buffers",
           "git_status",
-          -- "document_symbols",
+          "document_symbols",
         },
         add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
         auto_clean_after_session_restore = false, -- Automatically clean up broken neo-tree buffers saved in sessions
@@ -680,7 +680,7 @@ return {
           },
         },
         document_symbols = {
-          follow_cursor = false,
+          follow_cursor = true,
           client_filters = "first",
           renderers = {
             root = {
@@ -704,9 +704,12 @@ return {
             mappings = {
               ["<cr>"] = "jump_to_symbol",
               ["o"] = "jump_to_symbol",
+              ["l"] = "toggle_node",
+              ["h"] = "toggle_node",
               ["A"] = "noop", -- also accepts the config.show_path and config.insert_as options.
               ["d"] = "noop",
               ["y"] = "noop",
+              ["b"] = "noop",
               ["x"] = "noop",
               ["p"] = "noop",
               ["c"] = "noop",
@@ -781,7 +784,9 @@ return {
       }
       require("neo-tree").setup(default_config)
 
-      vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>")
+      vim.keymap.set("n", "<leader>e", "<cmd>Neotree focus<cr>")
+      vim.keymap.set("n", "<leader>b", "<cmd>Neotree toggle<cr>")
+      vim.keymap.set("n", "<leader>o", "<cmd>Neotree toggle document_symbols<cr>")
     end,
   },
 }
