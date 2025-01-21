@@ -364,12 +364,12 @@ return {
     -- REFACTOR: This can be done in the keys table as above
 
     -- Scratch Buffers
-    vim.keymap.set("n", "<leader>sb", function()
-      require("snacks").scratch()
-    end, { desc = "Toggle [S]cratch [B]uffer" })
-    vim.keymap.set("n", "<leader>S", function()
-      require("snacks").scratch.select()
-    end, { desc = "Select [S]cratch Buffer" })
+    -- vim.keymap.set("n", "<leader>sb", function()
+    --   require("snacks").scratch()
+    -- end, { desc = "Toggle [S]cratch [B]uffer" })
+    -- vim.keymap.set("n", "<leader>S", function()
+    --   require("snacks").scratch.select()
+    -- end, { desc = "Select [S]cratch Buffer" })
 
     -- Zen
     vim.keymap.set("n", "<leader>z", function()
