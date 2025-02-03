@@ -16,11 +16,10 @@ set("n", "<C-g>", "<cmd>silent !tmux neww tmux-reattach.sh<CR>")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
 
 -- NOTE This feels kinda disruptive as it also let's me not use this when I acually want to use it in telescope or completion
--- set("n", "<C-k>", "<C-w>k")
--- set("n", "<C-j>", "<C-w>j")
--- set("n", "<C-h>", "<C-w>h")
--- set("n", "<C-l>", "<C-w>l")
---
+set("n", "<C-k>", "<C-w>k")
+set("n", "<C-j>", "<C-w>j")
+set("n", "<C-h>", "<C-w>h")
+set("n", "<C-l>", "<C-w>l")
 
 -- REMOVE DEFAULT MAPPINGS --
 
