@@ -8,7 +8,7 @@ end
 return {
   {
     "stevearc/oil.nvim",
-    enabled = true,
+    enabled = false,
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
