@@ -130,6 +130,13 @@ return {
       desc = "[F]ind [G]it Files",
     },
     {
+      "<leader>fS",
+      function()
+        Snacks.picker.smart()
+      end,
+      desc = "[F]ind [S]mart",
+    },
+    {
       "<leader>fr",
       function()
         Snacks.picker.recent()
