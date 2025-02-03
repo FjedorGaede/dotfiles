@@ -355,6 +355,13 @@ return {
       end,
       desc = "LSP Symbols",
     },
+    {
+      "<leader>b",
+      function()
+        Snacks.picker.explorer()
+      end,
+      desc = "Open Explorer",
+    },
   },
   config = function(_, opts)
     local snacks = require("snacks")
