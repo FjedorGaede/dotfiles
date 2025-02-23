@@ -119,16 +119,16 @@ return {
             min_keyword_length = 3, -- Set to 3 keywords to not enable when typing wa, xa or qa
           },
         },
-        cmdline = function() -- NOTE: This is custom because I do not want to have enabled for searching. This annoyed me
-          local type = vim.fn.getcmdtype()
-          -- Commands
-          if type == ":" then
-            return { "cmdline" }
-          end
-          return {}
-        end,
       },
     },
+    cmdline = function() -- NOTE: This is custom because I do not want to have enabled for searching. This annoyed me
+      local type = vim.fn.getcmdtype()
+      -- Commands
+      if type == ":" then
+        return { "cmdline" }
+      end
+      return {}
+    end,
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { "sources.default" },
